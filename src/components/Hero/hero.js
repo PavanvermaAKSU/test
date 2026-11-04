@@ -24,20 +24,21 @@ function Hero() {
   return (
     <section className="hero" id="home">
       {/* Background video */}
-      <video
-        className="hero-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden="true"
-      >
-        <source src="/images/minebg.mp4" type="video/mp4" />
-      </video>
+      {/* Background video */}
+    <video
+      className="hero-video"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      aria-hidden="true"
+    >
+      <source src="/images/minebg.mp4" type="video/mp4" />
+    </video>
 
-      {/* Dark overlay for readable text */}
-      <div className="hero-overlay" />
+{/* Dark overlay */}
+    <div className="hero-overlay" />
 
       <div className="hero-container">
         <div className="hero-content">
