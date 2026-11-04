@@ -1,5 +1,4 @@
 
-
 .hero {
   position: relative;
   min-height: 690px;
@@ -12,56 +11,40 @@
   color: #ffffff;
 }
 
-/* Background video */
 .hero-video {
   position: absolute;
   inset: 0;
+  z-index: -2;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  z-index: 0;
   pointer-events: none;
 }
 
-/* Dark overlay */
+/* Keep text readable over the moving video */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: -1;
   pointer-events: none;
   background:
     linear-gradient(
       90deg,
-      rgba(5, 15, 29, 0.96) 0%,
-      rgba(5, 15, 29, 0.86) 31%,
-      rgba(5, 15, 29, 0.53) 65%,
+      rgba(5, 15, 29, 0.92) 0%,
+      rgba(5, 15, 29, 0.78) 36%,
+      rgba(5, 15, 29, 0.40) 65%,
       rgba(5, 15, 29, 0.18) 100%
     ),
     linear-gradient(
       0deg,
-      rgba(5, 15, 29, 0.88) 0%,
+      rgba(5, 15, 29, 0.82) 0%,
       transparent 45%,
-      rgba(5, 15, 29, 0.08) 100%
+      rgba(5, 15, 29, 0.12) 100%
     );
 }
 
-/* Hero content above video */
-.hero-container {
-  position: relative;
-  z-index: 2;
-}
 
-/* Keep text readable over the moving video */
-
-.hero-background,
-
-.hero-background {
-  z-index: -2;
-  background-size: cover;
-  background-position: center 55%;
-  transform: scale(1.01);
-}
 
 .hero-overlay {
   z-index: -1;
