@@ -50,7 +50,6 @@
 
 .hero-background {
   z-index: -2;
-  background-image: url("/mining-hero.jpg");
   background-size: cover;
   background-position: center 55%;
   transform: scale(1.01);
