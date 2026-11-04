@@ -1,0 +1,417 @@
+/* journey.css
+   Scoped with the "jr-" prefix. Change --jr-accent to restyle the section.
+   Mobile-first: single column on phones, alternating timeline from 900px. */
+
+.jr-section {
+  --jr-accent: #FF4D06;
+  --jr-accent-dark: #E04400;
+  --jr-charcoal: #1E2229;
+  --jr-dark: #14171D;
+  --jr-slate: #F4F6F9;
+  --jr-border: #E2E8F0;
+  --jr-muted: #64748b;
+
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #1f2937;
+  background: var(--jr-slate);
+  padding: 48px 16px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.jr-section *,
+.jr-section *::before,
+.jr-section *::after {
+  box-sizing: border-box;
+}
+
+.jr-section h2,
+.jr-section h3,
+.jr-section p,
+.jr-section ol {
+  margin: 0;
+  padding: 0;
+}
+
+.jr-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ---------- Header ---------- */
+.jr-head {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.jr-eyebrow {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(255, 77, 6, 0.12);
+  color: var(--jr-accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.jr-title {
+  margin-top: 14px !important;
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--jr-charcoal);
+}
+
+.jr-title span {
+  color: var(--jr-accent);
+}
+
+.jr-subtitle {
+  margin-top: 12px !important;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--jr-muted);
+}
+
+/* ---------- Highlights ---------- */
+.jr-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.jr-highlight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: var(--jr-charcoal);
+  border-radius: 12px;
+  border: 1px solid #2a3039;
+  color: #fff;
+  justify-content: center;
+  width: 150px;
+  box-shadow: 2px 4px 10px rgba(250, 83, 83, 0.3)
+}
+
+.jr-highlight i {
+  flex-shrink: 0;
+  width: 40px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(255, 77, 6, 0.15);
+  color: var(--jr-accent);
+  font-size: 16px;
+}
+
+.jr-highlight strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.jr-highlight span {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.jr-highlight img{
+  border-radius: 20%;
+}
+
+/* ---------- Timeline (mobile: line on the left) ---------- */
+.jr-timeline {
+  position: relative;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-left: 0;
+}
+
+.jr-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 23px;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, var(--jr-accent), var(--jr-charcoal));
+}
+
+.jr-item {
+  position: relative;
+  padding-left: 64px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.jr-item.is-visible,
+.jr-growth.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.jr-node {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--jr-charcoal);
+  border: 3px solid var(--jr-accent);
+  color: var(--jr-accent);
+  font-size: 18px;
+  box-shadow: 0 0 0 5px var(--jr-slate), 0 8px 20px -4px rgba(255, 77, 6, 0.45);
+}
+
+.jr-icon-img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.jr-card {
+  position: relative;
+  padding: 20px;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid var(--jr-border);
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.08);
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.jr-card:hover {
+  border-color: var(--jr-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px -8px rgba(255, 77, 6, 0.22);
+}
+
+.jr-year {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 6px;
+  background: var(--jr-accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.jr-card h3 {
+  margin-top: 10px !important;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--jr-charcoal);
+}
+
+.jr-card p {
+  margin-top: 6px !important;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #475569;
+}
+
+/* ---------- Turnover growth ---------- */
+.jr-growth {
+  padding: 24px 20px;
+  border-radius: 16px;
+  background: var(--jr-charcoal);
+  color: #fff;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.jr-growth-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #334155;
+}
+
+.jr-growth-head h3 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--jr-accent);
+}
+
+.jr-growth-head h3 i {
+  margin-right: 8px;
+}
+
+.jr-growth-head span {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.jr-bars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  align-items: end;
+}
+
+.jr-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.jr-bar-value {
+  text-align: center;
+  font-size: clamp(14px, 3.6vw, 22px);
+  font-weight: 800;
+}
+
+.jr-bar-value small {
+  display: block;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--jr-accent);
+}
+
+.jr-bar-track {
+  width: 100%;
+  max-width: 90px;
+  height: 180px;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.jr-bar {
+  width: 100%;
+  height: 0;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(to top, var(--jr-accent-dark), var(--jr-accent));
+  transition: height 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.jr-growth.is-visible .jr-bar {
+  height: var(--jr-h);
+}
+
+.is-projected .jr-bar {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--jr-accent),
+    var(--jr-accent) 8px,
+    var(--jr-accent-dark) 8px,
+    var(--jr-accent-dark) 16px
+  );
+}
+
+.jr-bar-label {
+  font-size: 10px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+/* ---------- Tablet+ ---------- */
+@media (min-width: 640px) {
+  .jr-section { padding: 64px 24px; }
+  .jr-highlights { grid-template-columns: repeat(4, 1fr); }
+  .jr-card { padding: 24px; }
+  .jr-growth { padding: 28px; }
+  .jr-bar-track { height: 220px; }
+  .jr-bar-label { font-size: 12px; }
+}
+
+/* ---------- Desktop: alternating timeline around a centre line ---------- */
+@media (min-width: 900px) {
+  .jr-timeline { gap: 40px; }
+  .jr-timeline::before { left: 50%; transform: translateX(-50%); }
+
+  .jr-item {
+    width: 50%;
+    padding-left: 0;
+  }
+
+  .jr-item.is-left {
+    padding-right: 56px;
+    align-self: flex-start;
+    transform: translate(-30px, 24px);
+  }
+
+  .jr-item.is-right {
+    padding-left: 56px;
+    align-self: flex-end;
+    transform: translate(30px, 24px);
+  }
+
+  .jr-item.is-visible { transform: none; }
+
+  .jr-item.is-left .jr-node {
+    left: auto;
+    right: -24px;
+  }
+
+  .jr-item.is-right .jr-node {
+    left: -24px;
+  }
+
+  /* little arrow pointing at the centre line */
+  .jr-item.is-left .jr-card::after,
+  .jr-item.is-right .jr-card::after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border: 1px solid var(--jr-border);
+    transform: rotate(45deg);
+  }
+
+  .jr-item.is-left .jr-card::after {
+    right: -8px;
+    border-left: 0;
+    border-bottom: 0;
+  }
+
+  .jr-item.is-right .jr-card::after {
+    left: -8px;
+    border-right: 0;
+    border-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jr-item, .jr-growth, .jr-bar, .jr-card {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  .jr-bar { height: var(--jr-h); }
+}

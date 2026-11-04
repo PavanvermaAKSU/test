@@ -1,0 +1,366 @@
+/* vision.css
+   Mobile-first. Layout switches by width AND orientation:
+   - base            : phones, portrait  (single column)
+   - 640px+          : large phones / small tablets (photo + mission side by side)
+   - 960px+          : desktop & tablet landscape (full slide layout from the design)
+   - short landscape : phones turned sideways reuse the desktop layout, scaled down
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Mulish:wght@400;700;800&display=swap");
+
+.vm {
+  --vm-orange: #ff4d06;
+  --vm-red: #c40a00;
+  --vm-ink: #14110f;
+  --vm-paper: #ffffff;
+
+  --vm-gap: clamp(1rem, 2.4vw, 2.25rem);
+  --vm-pad-x: clamp(1rem, 4.5vw, 3.5rem);
+  --vm-pad-y: clamp(1.5rem, 4vw, 3rem);
+
+  --vm-fs-heading: clamp(2.6rem, 8vw + 0.5rem, 5.4rem);
+  --vm-fs-card-title: clamp(1.35rem, 1.2vw + 1rem, 2rem);
+  --vm-fs-body: clamp(0.95rem, 0.35vw + 0.85rem, 1.2rem);
+  --vm-fs-mission-title: clamp(1.5rem, 1.4vw + 1.1rem, 2.3rem);
+
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin-top: 10%;
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: var(--vm-pad-y) var(--vm-pad-x) 0;
+  background: var(--vm-paper);
+  color: var(--vm-ink);
+  font-family: "Mulish", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: var(--vm-fs-body);
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+.vm *,
+.vm *::before,
+.vm *::after {
+  box-sizing: border-box;
+}
+
+/* ---------- decorative stripes ---------- */
+.vm__stripes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: clamp(0.3rem, 0.8vw, 0.6rem);
+  padding-right: clamp(0rem, 0.5vw, 0.5rem);
+  pointer-events: none;
+}
+.vm__stripes span {
+  width: clamp(1.1rem, 3.2vw, 2.6rem);
+  height: clamp(1.4rem, 4vw, 3.1rem);
+  background: var(--vm-orange);
+  transform: skewX(-22deg);
+}
+.vm__stripes span:nth-child(2) {
+  background: var(--vm-paper);
+  border-inline: 0;
+}
+.vm__stripes span:nth-child(2) {
+  background: var(--vm-orange);
+}
+.vm__stripes span:nth-child(4) {
+  width: clamp(2rem, 6vw, 5rem);
+}
+
+/* ---------- grid ---------- */
+.vm__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--vm-gap);
+  position: relative;
+}
+
+/* ---------- heading ---------- */
+.vm__heading {
+  grid-area: heading;
+  margin: 0;
+  font-family: "Times new roman", "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  font-weight: 400;
+  font-size: var(--vm-fs-heading);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  color: var(--vm-orange);
+  text-transform: uppercase;
+  /* keep clear of the stripes on small screens */
+  padding-top: clamp(1.5rem, 5vw, 0rem);
+}
+.vm__heading-line {
+  display: block;
+}
+
+/* ---------- photos ---------- */
+.vm__photo {
+  margin: 0;
+  overflow: hidden;
+  background: #2a2a2a;
+}
+.vm__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vm__photo--worker {
+  grid-area: worker;
+  aspect-ratio: 16 / 10;
+  align-self: start;
+}
+.vm__photo--worker img {
+  object-position: 50% 55%;
+}
+
+.vm__top {
+  grid-area: top;
+  position: relative;
+}
+.vm__photo--mining {
+  aspect-ratio: 16 / 10;
+}
+.vm__photo--mining img {
+  object-position: 50% 60%;
+}
+
+/* ---------- vision card ---------- */
+.vm__card {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 2rem);
+  margin: -2.5rem 0 0 auto;
+  padding: clamp(1.1rem, 2.4vw, 2.1rem) clamp(1.1rem, 2.6vw, 2.2rem);
+  color: #fff;
+  background: linear-gradient(125deg, var(--vm-red) 0%, #e22d00 55%, var(--vm-orange) 100%);
+}
+.vm__card-title {
+  margin: 0 0 0.5em;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: var(--vm-fs-card-title);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+}
+.vm__card-text {
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0;
+  font-size: var(--vm-fs-body);
+  line-height: 1.55;
+  max-width: 46ch;
+}
+
+/* ---------- mission ---------- */
+.vm__mission {
+  grid-area: mission;
+}
+.vm__mission-title {
+  margin: 0 0 0.35em;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: var(--vm-fs-mission-title);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.1;
+  color: var(--vm-orange);
+}
+.vm__mission-intro {
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0 0 0.35em;
+  max-width: 60ch;
+}
+.vm__list {
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0;
+  padding-left: 1.3em;
+  max-width: 62ch;
+}
+.vm__list li {
+  margin-bottom: 0.2em;
+  padding-left: 0.2em;
+}
+.vm__list li::marker {
+  color: var(--vm-ink);
+}
+.vm__list strong {
+  font-weight: 800;
+}
+
+/* ---------- closing line ---------- */
+.vm__closing {
+  margin: var(--vm-gap) 0 0;
+  padding: 0.9rem 0 1.1rem;
+  border-bottom: 2px solid var(--vm-orange);
+  font-weight: 800;
+  font-size: clamp(0.9rem, 0.5vw + 0.8rem, 1.2rem);
+  line-height: 1.45;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* ---------- named areas: phone portrait ---------- */
+.vm__grid {
+  grid-template-areas:
+    "heading"
+    "top"
+    "worker"
+    "mission";
+}
+
+/* ---------- 640px+ : large phones, small tablets ---------- */
+@media (min-width: 640px) {
+  .vm__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    grid-template-areas:
+      "heading heading"
+      "top     top"
+      "worker  mission";
+    align-items: start;
+  }
+  .vm__heading {
+    padding-top: 0;
+  }
+  .vm__heading-line {
+    display: inline;
+  }
+  .vm__heading-line:first-child::after {
+    content: " ";
+  }
+  .vm__photo--mining {
+    aspect-ratio: 21 / 9;
+  }
+  .vm__card {
+    width: 72%;
+    margin-top: -3rem;
+  }
+  .vm__photo--worker {
+    aspect-ratio: 4 / 5;
+    align-self: stretch;
+    height: 100%;
+  }
+}
+
+/* ---------- 960px+ : desktop / tablet landscape — matches the original slide ---------- */
+@media (min-width: 960px) {
+  .vm__grid {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 6.4fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "heading top"
+      "worker  top"
+      "worker  mission";
+  }
+  .vm__heading-line {
+    display: block;
+  }
+  .vm__heading-line:first-child::after {
+    content: none;
+  }
+  .vm__heading {
+    padding-top: clamp(1rem, 2vw, 2rem);
+  }
+
+  /* mining photo (left) + card overlapping it (right) */
+  .vm__top {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 1.75rem;
+    padding-right: clamp(1rem, 5vw, 4rem);
+  }
+  .vm__photo--mining {
+    flex: 0 0 37%;
+    aspect-ratio: 233 / 265;
+    margin-top: -1.75rem;
+  }
+  .vm__card {
+    flex: 1 1 auto;
+    width: auto;
+    margin: 0 0 0 -6%;
+    align-self: flex-start;
+    min-height: 82%;
+  }
+
+  .vm__photo--worker {
+    aspect-ratio: 300 / 315;
+    height: auto;
+    align-self: end;
+    margin-top: 0;
+  }
+}
+
+/* ---------- very wide screens: stop type from ballooning ---------- */
+@media (min-width: 1440px) {
+  .vm {
+    --vm-fs-heading: 5.6rem;
+  }
+}
+
+/* ---------- phones in landscape (short viewport): keep the slide layout, tighten spacing ---------- */
+@media (orientation: landscape) and (max-height: 520px) and (min-width: 560px) {
+  .vm {
+    --vm-gap: 0.9rem;
+    --vm-pad-y: 1rem;
+    --vm-fs-heading: clamp(1.8rem, 6vh + 0.5rem, 3rem);
+    --vm-fs-body: clamp(0.78rem, 2.6vh, 0.95rem);
+    --vm-fs-card-title: clamp(1rem, 3.6vh, 1.3rem);
+    --vm-fs-mission-title: clamp(1.1rem, 4vh, 1.5rem);
+  }
+  .vm__grid {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 6.4fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "heading top"
+      "worker  top"
+      "worker  mission";
+  }
+  .vm__heading {
+    padding-top: 0.5rem;
+  }
+  .vm__heading-line {
+    display: block;
+  }
+  .vm__heading-line:first-child::after {
+    content: none;
+  }
+  .vm__top {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 0.75rem;
+    padding-right: 1rem;
+  }
+  .vm__photo--mining {
+    flex: 0 0 37%;
+    aspect-ratio: 233 / 265;
+    margin-top: -0.75rem;
+  }
+  .vm__card {
+    flex: 1 1 auto;
+    width: auto;
+    margin: 0 0 0 -6%;
+    padding: 0.8rem 1rem;
+    min-height: 0;
+  }
+  .vm__photo--worker {
+    aspect-ratio: 300 / 315;
+    height: auto;
+    align-self: end;
+  }
+  .vm__stripes span {
+    height: 1.2rem;
+  }
+}
+
+/* ---------- print: keep colours, drop the clipping ---------- */
+@media print {
+  .vm {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    max-width: none;
+  }
+}

@@ -1,0 +1,352 @@
+/* =========================================================
+   banner.css  |  Coal & Fly Ash Transport banner (React)
+   1. Tokens + reset   2. Layout (stacked default)   3. Intro
+   4. Stats + controls   5. Scene animation   6. Breakpoints
+
+   All classes are prefixed bn / bn__ / bn- so they cannot clash
+   with other sections. Breakpoints live ONLY here; banner.js reads
+   --bn-view to choose the SVG crop.
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* ---------- 1. Tokens + reset ---------- */
+.bn {
+  --bn-ink: #14110d;
+  --bn-muted: #5f594f;
+  --bn-line: #e8e1d3;
+  --bn-gold: #c9a45c;
+  --bn-orange: #ff4d06;
+  --bn-on-orange: #14110d; /* black on #FF4D06 = 6:1 contrast */
+  --bn-radius: 16px;
+
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--bn-ink);
+}
+
+.bn,
+.bn *,
+.bn *::before,
+.bn *::after {
+  box-sizing: border-box;
+}
+
+/* ---------- 2. Layout ---------- */
+.bn {
+  --bn-view: "narrow";            /* read by banner.js */
+  --bn-stage-ratio: 640 / 250;
+  --bn-speed: 1;                  /* set by banner.js */
+
+  container-type: inline-size; /* lets children size with cqi */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "intro" "stage" "stats";
+  width: 100%;
+  max-width: 1610px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--bn-line);
+  border-radius: var(--bn-radius);
+  box-shadow: 0 20px 25px -5px rgb(20 17 13 / 8%), 0 8px 10px -6px rgb(20 17 13 / 5%);
+}
+
+.bn__intro { grid-area: intro; }
+.bn__stage { grid-area: stage; }
+.bn__stats { grid-area: stats; }
+
+.bn__stage {
+  position: relative;
+  min-height: 0;
+  aspect-ratio: var(--bn-stage-ratio);
+}
+
+.bn__scene {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- 3. Intro ---------- */
+.bn__intro {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 1.25rem 1.25rem 0.5rem;
+}
+
+.bn__tag {
+  padding: 0.3rem 0.75rem;
+  color: #b83600;
+  background: #fff0e8;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.bn__title {
+  margin: 0;
+  color: var(--bn-ink);
+  font-size: clamp(1.35rem, 5.6vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.bn__text {
+  display: grid;
+  gap: 0.15rem;
+  max-width: 52ch;
+  margin: 0;
+  color: var(--bn-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* ---------- 4. Stats + controls ---------- */
+.bn__stats {
+  z-index: 1;
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem 1.25rem 1.1rem;
+  color: #fff;
+  background: var(--bn-ink);
+}
+
+.bn__list {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bn__stat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.bn__icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.bn__icon svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.bn__icon--orange { color: var(--bn-on-orange); background: var(--bn-orange); }
+.bn__icon--gold   { color: var(--bn-on-orange); background: var(--bn-gold); }
+
+.bn__stat-text {
+  display: grid;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.bn__stat-text strong {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.bn__stat-text span {
+  color: #b8ae9b;
+  font-size: 0.74rem;
+}
+
+.bn__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgb(255 255 255 / 12%);
+}
+
+.bn__btn {
+  display: inline-grid;
+  place-items: center;
+  height: 2.25rem;
+  padding: 0;
+  color: #fff;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: transparent;
+  border: 1px solid rgb(201 164 92 / 55%);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.bn__btn:hover {
+  color: var(--bn-on-orange);
+  background: var(--bn-orange);
+  border-color: var(--bn-orange);
+}
+
+.bn__btn:focus-visible {
+  outline: 2px solid var(--bn-orange);
+  outline-offset: 3px;
+}
+
+.bn__btn--play  { width: 2.25rem; }
+.bn__btn--speed { min-width: 3.6rem; padding-inline: 0.8rem; }
+
+.bn__btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* play / pause icon swap */
+.bn.is-paused .bn__icon-pause { display: none; }
+.bn:not(.is-paused) .bn__icon-play { display: none; }
+
+/* ---------- 5. Scene animation ---------- */
+.bn-wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spin calc(0.7s / var(--bn-speed)) linear infinite;
+}
+
+.bn-steam,
+.bn-smoke {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: puff 4s ease-out infinite;
+  opacity: 0;
+}
+.bn-steam--2 { animation-delay: 1.3s; }
+.bn-steam--3 { animation-delay: 2.6s; }
+
+.bn-smoke { animation-duration: 1.8s; }
+.bn-smoke--2 { animation-delay: 0.9s; }
+
+.bn-arm {
+  transform-origin: 35px 18px;
+  animation: dig 3.2s ease-in-out infinite;
+}
+
+.bn.is-paused .bn__scene * {
+  animation-play-state: paused;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes puff {
+  0%   { opacity: 0.7; transform: translate(0, 0) scale(0.6); }
+  100% { opacity: 0;   transform: translate(10px, -34px) scale(1.7); }
+}
+
+@keyframes dig {
+  0%, 100% { transform: rotate(-4deg); }
+  50%      { transform: rotate(10deg); }
+}
+
+/* ---------- 6. Breakpoints ---------- */
+
+/* Mid: tablets and large phones. Same stacked layout, wider crop, 2-column stats */
+@media (min-width: 640px) {
+  .bn {
+    --bn-view: "mid";
+    --bn-stage-ratio: 1610 / 292;
+  }
+
+  .bn__intro { padding: 1.75rem 2rem 0.75rem; }
+  .bn__title { font-size: clamp(1.8rem, 3.4vw, 2.4rem); }
+  .bn__text { font-size: 1rem; }
+
+  .bn__stats {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+  }
+  .bn__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  .bn__controls { padding: 0; border: 0; }
+}
+
+/* Wide: desktop. Text and stats float over one full-bleed scene.
+   Everything is sized in cqi so panels scale WITH the scene and can never
+   collide with the excavator or the plant at any desktop width. */
+@media (min-width: 1280px) {
+  .bn {
+    --bn-view: "wide";
+    grid-template-areas: "stack";
+    grid-template-rows: minmax(0, 1fr);
+    aspect-ratio: 1610 / 400;
+  }
+
+  .bn__intro,
+  .bn__stage,
+  .bn__stats {
+    grid-area: stack;
+  }
+
+  .bn__stage { aspect-ratio: auto; }
+
+  .bn__intro {
+    align-self: start;
+    justify-self: start;
+    gap: clamp(0.3rem, 0.5cqi, 0.5rem);
+    width: min(34cqi, 36rem);
+    margin: clamp(1rem, 2cqi, 2rem) 0 0 clamp(1rem, 2.8cqi, 2.8rem);
+    padding: clamp(0.7rem, 1cqi, 1rem) clamp(1rem, 1.5cqi, 1.5rem);
+    background: rgb(255 255 255 / 92%);
+    border: 1px solid var(--bn-line);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgb(20 17 13 / 8%);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+
+  .bn__tag { font-size: clamp(0.62rem, 0.7cqi, 0.72rem); }
+  .bn__title { font-size: clamp(1.1rem, 1.5cqi, 1.7rem); }
+  .bn__text { font-size: clamp(0.72rem, 0.78cqi, 0.9rem); }
+
+  .bn__stats {
+    align-self: start;
+    justify-self: end;
+    width: clamp(15.5rem, 19cqi, 19rem);
+    margin: clamp(1rem, 2cqi, 2rem) clamp(1rem, 2.8cqi, 2.8rem) 0 0;
+    padding: clamp(0.7rem, 0.9cqi, 1rem) clamp(0.9rem, 1.2cqi, 1.25rem);
+    gap: 0.6rem;
+    background: rgb(20 17 13 / 94%);
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgb(20 17 13 / 22%);
+    grid-template-columns: 1fr;
+  }
+
+  .bn__list { grid-template-columns: 1fr; gap: 0.6rem; }
+  .bn__icon { width: 1.75rem; height: 1.75rem; }
+  .bn__stat-text strong { font-size: clamp(0.72rem, 0.8cqi, 0.88rem); }
+  .bn__stat-text span { font-size: clamp(0.64rem, 0.66cqi, 0.74rem); }
+
+  .bn__controls {
+    padding-top: 0.6rem;
+    border-top: 1px solid rgb(255 255 255 / 12%);
+  }
+}
+
+/* Short landscape phones use the stacked layout; keep the text block compact */
+@media (orientation: landscape) and (max-height: 480px) and (max-width: 1279px) {
+  .bn__intro { padding-block: 0.9rem 0.4rem; }
+  .bn__text { display: none; }
+  .bn__stats { padding-block: 0.7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bn__btn { transition: none; }
+}

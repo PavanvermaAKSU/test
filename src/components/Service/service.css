@@ -1,0 +1,397 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Mukta:wght@400;500;600;700;800&display=swap");
+
+/* Colour roles (60 / 30 / 10):
+   black  -> surfaces (60%)
+   gold   -> information: labels, subtitles, ticks, borders (30%)
+   orange -> action: button hover, top line, focus, underline (10%)       */
+.svc {
+  --svc-bg: #080706;
+  --svc-card: #12100d;
+  --svc-card-edge: rgba(201, 164, 92, 0.16);
+  --svc-btn: #1b1712;
+
+  --svc-gold: #c9a45c;
+  --svc-gold-soft: rgba(201, 164, 92, 0.3);
+  --svc-orange: #ff4d06;
+  --svc-on-orange: #0a0a0a; /* black on #FF4D06 = 6:1 contrast, white would be 3:1 */
+
+  --svc-text: #ffffff;
+  --svc-muted: #b3aa9a;
+  --svc-soft: #d8d0c0;
+
+  --svc-gap: clamp(0.9rem, 1.8vw, 1.5rem);
+  --svc-pad-x: clamp(1rem, 4vw, 3.5rem);
+  --svc-pad-y: clamp(2.5rem, 5vw, 4.5rem);
+  --svc-radius: 14px;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--svc-pad-y) var(--svc-pad-x);
+  color: var(--svc-text);
+  background:
+    radial-gradient(60rem 28rem at 0% 0%, rgba(201, 164, 92, 0.1), transparent 70%),
+    radial-gradient(48rem 24rem at 100% 100%, rgba(255, 77, 6, 0.07), transparent 70%),
+    var(--svc-bg);
+  font-family: "Times new roman", system-ui, sans-serif;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+.svc *,
+.svc *::before,
+.svc *::after {
+  box-sizing: border-box;
+}
+
+.svc:lang(hi) {
+  font-family: "Mukta", "Noto Sans Devanagari", system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* ---------- intro ---------- */
+.svc__intro {
+  max-width: 760px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.svc__eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: var(--svc-gold);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.svc:lang(hi) .svc__eyebrow {
+  letter-spacing: 0.02em;
+}
+
+.svc__section-title {
+  margin: 0;
+  color: var(--svc-text);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* small orange bar: the one brand mark in the intro */
+.svc__section-title::after {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 3px;
+  margin: 0.9rem auto 0;
+  background: var(--svc-orange);
+  border-radius: 2px;
+}
+
+.svc__section-description {
+  max-width: 650px;
+  margin: 1rem auto 0;
+  color: var(--svc-muted);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+/* ---------- grid ---------- */
+.svc__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16.5rem), 1fr));
+  gap: var(--svc-gap);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* ---------- card ---------- */
+.svc__card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--svc-card);
+  border: 1px solid var(--svc-card-edge);
+  border-radius: var(--svc-radius);
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease;
+}
+
+/* gold -> orange line draws across the top on hover */
+.svc__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  height: 3px;
+  background: linear-gradient(90deg, var(--svc-gold), var(--svc-orange));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+.svc__card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 164, 92, 0.5);
+}
+
+.svc__card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ---------- image header ---------- */
+.svc__media {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: linear-gradient(140deg, #1e1a14, #0a0908);
+}
+
+.svc__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.svc__card:hover .svc__media img {
+  transform: scale(1.04);
+}
+
+.svc__image-fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 70% 25%, rgba(201, 164, 92, 0.18), transparent 50%),
+    linear-gradient(140deg, #1e1a14, #0a0908);
+}
+
+.svc__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(8, 7, 6, 0.97) 0%,
+    rgba(8, 7, 6, 0.52) 42%,
+    transparent 75%
+  );
+  pointer-events: none;
+}
+
+.svc__badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: calc(100% - 1.5rem);
+  padding: 0.4rem 0.7rem;
+  color: var(--svc-gold);
+  background: rgba(8, 7, 6, 0.86);
+  border: 1px solid var(--svc-gold-soft);
+  border-radius: 7px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.svc:lang(hi) .svc__badge {
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+
+.svc__badge-icon {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+}
+
+.svc__heading {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.8rem;
+  left: 0.85rem;
+  z-index: 2;
+}
+
+.svc__title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.05rem, 0.5vw + 1rem, 1.3rem);
+  font-weight: 800;
+  line-height: 1.3;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.svc__subtitle {
+  margin: 0.3rem 0 0;
+  color: var(--svc-gold);
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* ---------- body ---------- */
+.svc__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.1rem;
+}
+
+.svc__desc {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: var(--svc-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.svc__points {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.svc__points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--svc-soft);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.svc__check {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.12rem;
+  color: var(--svc-gold);
+}
+
+/* ---------- button: dark by default, orange on hover ---------- */
+.svc__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.8rem;
+  margin-top: auto;
+  padding: 0.65rem 1rem;
+  color: var(--svc-text);
+  background: var(--svc-btn);
+  border: 1px solid var(--svc-gold-soft);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.svc__btn svg {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  color: var(--svc-orange);
+  transition: color 0.2s ease;
+}
+
+.svc__btn:hover {
+  color: var(--svc-on-orange);
+  background: var(--svc-orange);
+  border-color: var(--svc-orange);
+}
+
+.svc__btn:hover svg {
+  color: var(--svc-on-orange);
+}
+
+.svc__btn:focus-visible {
+  outline: 2px solid var(--svc-orange);
+  outline-offset: 3px;
+}
+
+/* ---------- screen-size tuning ---------- */
+@media (max-width: 35rem) {
+  .svc__media {
+    aspect-ratio: 16 / 9;
+  }
+
+  .svc__desc {
+    font-size: 0.95rem;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  .svc {
+    --svc-pad-y: 1.25rem;
+  }
+
+  .svc__media {
+    aspect-ratio: 2 / 1;
+  }
+
+  .svc__body {
+    gap: 0.7rem;
+    padding: 0.8rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .svc__grid {
+    max-width: 1440px;
+  }
+}
+
+/* touch screens have no hover: keep the orange action visible on press instead */
+@media (hover: none) {
+  .svc__card:hover {
+    transform: none;
+  }
+
+  .svc__btn:active {
+    color: var(--svc-on-orange);
+    background: var(--svc-orange);
+    border-color: var(--svc-orange);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc__card,
+  .svc__card::before,
+  .svc__media img,
+  .svc__btn,
+  .svc__btn svg {
+    transition: none;
+  }
+
+  .svc__card:hover,
+  .svc__card:hover .svc__media img {
+    transform: none;
+  }
+}

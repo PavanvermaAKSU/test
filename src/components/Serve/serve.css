@@ -1,0 +1,311 @@
+/* serve.css
+   Styles for the "Where we serve" section. Everything is scoped under .serve
+   and uses its own custom properties, so it will not clash with the rest of the app.
+   Bright theme with the #FF4D06 accent, set in Times New Roman (system font, nothing to load).
+   All class names are unchanged, so the existing serve.js and servedata.js keep working. */
+
+.serve {
+  --serve-bg: #fff8f3;
+  --serve-bg2: #fff0e7;
+  --serve-card: #ffffff;
+  --serve-ink: #1c1917;
+  --serve-mute: #6b625c;
+  --serve-line: #ffd9c6;
+  --serve-org: #ff4d06;
+  --serve-org-dark: #e04400;
+  --serve-org-light: #ff7a3d;
+  --serve-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --serve-display: "Times New Roman", Times, "Liberation Serif", "Noto Serif", serif;
+  --serve-body: "Times New Roman", Times, "Liberation Serif", "Noto Serif", serif;
+
+  position: relative;
+  padding: 96px 0;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(255, 77, 6, 0.16), transparent 38%),
+    radial-gradient(circle at 4% 96%, rgba(255, 122, 61, 0.14), transparent 40%),
+    linear-gradient(180deg, var(--serve-bg), #ffffff 70%);
+  color: var(--serve-ink);
+  font-family: var(--serve-body);
+  font-size: 18px;
+  line-height: 1.65;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.serve *,
+.serve *::before,
+.serve *::after { box-sizing: border-box; }
+
+/* soft decorative ring behind the content */
+.serve::before {
+  content: "";
+  position: absolute;
+  top: -140px;
+  right: -140px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 77, 6, 0.28);
+  pointer-events: none;
+}
+
+.serve__wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+/* ---------- Heading ---------- */
+.serve__eyebrow {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 5px 16px;
+  border-radius: 999px;
+  background: rgba(255, 77, 6, 0.12);
+  color: var(--serve-org-dark);
+  font-family: var(--serve-body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.serve__title {
+  position: relative;
+  margin: 0 0 22px;
+  padding-bottom: 18px;
+  font-family: var(--serve-display);
+  font-weight: 700;
+  font-size: clamp(34px, 5.2vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--serve-ink);
+}
+
+.serve__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 84px;
+  height: 5px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, var(--serve-org), var(--serve-org-light));
+}
+
+.serve__title span,
+.serve__title em {
+  font-style: normal;
+  color: var(--serve-org);
+}
+
+.serve__lead {
+  max-width: 62ch;
+  margin: 0 0 44px;
+  font-size: 20px;
+  line-height: 1.7;
+  color: var(--serve-mute);
+}
+
+/* ---------- 3D scroll reveal ---------- */
+.serve__reveal {
+  opacity: 0;
+  transform: perspective(900px) rotateX(14deg) translateY(44px);
+  transform-origin: 50% 100%;
+  transition: opacity 1s var(--serve-ease), transform 1s var(--serve-ease);
+  transition-delay: var(--d, 0s);
+}
+.serve--in .serve__reveal { opacity: 1; transform: none; }
+
+.serve__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* ---------- Map ---------- */
+.serve__map {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 18px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 20% 15%, #fff4ec, transparent 55%),
+    #ffffff;
+  border: 1px solid var(--serve-line);
+  box-shadow:
+    0 30px 60px -28px rgba(255, 77, 6, 0.45),
+    0 4px 14px rgba(28, 25, 23, 0.05);
+}
+
+/* dotted land texture (the pattern is defined inside the SVG) */
+.serve__map pattern circle { fill: var(--serve-org); fill-opacity: 0.38; }
+
+.serve__land {
+  fill: url(#serve-dots);
+  stroke: rgba(255, 77, 6, 0.55);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.serve__arc {
+  fill: none;
+  stroke: var(--serve-org);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  filter: drop-shadow(0 2px 4px rgba(255, 77, 6, 0.45));
+  transition: stroke-dashoffset 2.2s var(--serve-ease);
+  transition-delay: var(--d, 0s);
+}
+.serve--in .serve__arc { stroke-dashoffset: 0; }
+
+.serve__dot {
+  fill: var(--serve-org);
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  transition: fill 0.3s;
+}
+.serve__pin--hq .serve__dot { fill: #1c1917; stroke: var(--serve-org); stroke-width: 3; }
+
+.serve__pulse {
+  fill: none;
+  stroke: var(--serve-org);
+  stroke-width: 1.8;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: serve-pulse 2.6s ease-out infinite;
+}
+@keyframes serve-pulse {
+  from { transform: scale(1); opacity: 0.9; }
+  to { transform: scale(4.5); opacity: 0; }
+}
+
+.serve__pin text {
+  fill: var(--serve-ink);
+  font: 700 14px var(--serve-body);
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  transition: fill 0.3s;
+}
+.serve__pin { cursor: default; }
+.serve__pin.is-active .serve__dot { fill: #1c1917; }
+.serve__pin.is-active text { fill: var(--serve-org-dark); font-weight: 700; }
+
+/* ---------- City list ---------- */
+.serve__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.serve__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--serve-card);
+  border: 1px solid var(--serve-line);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px -10px rgba(255, 77, 6, 0.35);
+  outline: none;
+  cursor: default;
+  transition:
+    background 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s,
+    transform 0.3s var(--serve-ease);
+}
+
+.serve__item:hover,
+.serve__item.is-active {
+  background: linear-gradient(90deg, var(--serve-bg2), #ffffff);
+  border-color: var(--serve-org);
+  box-shadow:
+    inset 5px 0 0 var(--serve-org),
+    0 14px 28px -14px rgba(255, 77, 6, 0.55);
+  transform: translateX(6px);
+}
+
+.serve__item:focus-visible { box-shadow: 0 0 0 3px var(--serve-org); }
+
+.serve__city {
+  display: block;
+  font-family: var(--serve-display);
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 1.2;
+  letter-spacing: 0.005em;
+  color: var(--serve-ink);
+}
+
+.serve__item:hover .serve__city,
+.serve__item.is-active .serve__city { color: var(--serve-org-dark); }
+
+.serve__state {
+  font-size: 16px;
+  font-style: italic;
+  color: var(--serve-mute);
+}
+
+.serve__badge {
+  align-self: center;
+  white-space: nowrap;
+  padding: 4px 14px;
+  border-radius: 99px;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--serve-org), var(--serve-org-light));
+  box-shadow: 0 6px 14px -6px rgba(255, 77, 6, 0.7);
+}
+.serve__badge--hq {
+  background: #1c1917;
+  box-shadow: 0 6px 14px -6px rgba(28, 25, 23, 0.6);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .serve__grid { gap: 32px; }
+}
+
+@media (max-width: 860px) {
+  .serve { padding: 68px 0; font-size: 17px; }
+  .serve::before { width: 300px; height: 300px; top: -120px; right: -120px; }
+  .serve__grid { grid-template-columns: 1fr; }
+  .serve__lead { font-size: 18px; margin-bottom: 32px; }
+  .serve__map { padding: 12px; border-radius: 22px; }
+  .serve__item:hover,
+  .serve__item.is-active { transform: translateX(3px); }
+}
+
+@media (max-width: 520px) {
+  .serve { padding: 52px 0; }
+  .serve__wrap { padding: 0 16px; }
+  .serve__title::after { width: 64px; height: 4px; }
+  .serve__map { padding: 8px; border-radius: 18px; }
+  .serve__pin text { font-size: 12px; }
+  .serve__item { padding: 13px 14px; border-radius: 14px; }
+  .serve__city { font-size: 21px; }
+  .serve__state { font-size: 14px; }
+  .serve__badge { padding: 3px 11px; font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .serve__reveal { opacity: 1; transform: none; transition: none; }
+  .serve__arc { stroke-dashoffset: 0; transition: none; }
+  .serve__pulse { animation: none; }
+  .serve__item { transition: none; }
+}

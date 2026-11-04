@@ -1,0 +1,66 @@
+
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "products": "Products",
+    "contact": "Contact",
+    "language": "Language",
+    "getInTouch": "Get in Touch"
+  },
+  "hero": {
+    "eyebrow": "INDUSTRIAL SOLUTIONS & RESOURCE MANAGEMENT",
+    "title": "Powering Progress",
+    "highlight": "Through Reliable Resources.",
+    "description": "Mining and earthwork, coal supply and transportation, diesel supply, automotive parts and lubricants.",
+    "exploreServices": "Explore Our Services",
+    "contactTeam": "Contact Our Team"
+  },
+  "about": {
+    "eyebrow": "WHO WE ARE",
+    "title": "Building Progress Through",
+    "highlight": "Reliable Partnerships."
+  },
+
+  "products": {
+    "eyebrow": "OUR PRODUCT RANGE",
+    "title": "Quality Products for",
+    "highlight": "Everyday Operations",
+    "description": "Explore our commercial vehicle parts, lubricants and related product categories.",
+    "lubricants": "Lubricants",
+    "lubricantsDescription": "Automotive and industrial lubricants from established product brands.",
+    "spareParts": "HCV & LCV Spare Parts",
+    "sparePartsDescription": "Spare parts for heavy and light commercial vehicles, including products from established vehicle manufacturers.",
+    "tyresBatteries": "Tyres & Batteries",
+    "tyresBatteriesDescription": "Tyres and batteries for commercial vehicle and maintenance requirements.",
+    "bearingsLeafSprings": "Bearings & Leaf Springs",
+    "bearingsLeafSpringsDescription": "Industrial bearings and leaf springs for relevant vehicle and equipment applications.",
+    "defUrea": "DEF / Urea Products",
+    "defUreaDescription": "Diesel exhaust fluid and urea-related products for compatible vehicle requirements.",
+    "enquiryCta": "Business Enquiries",
+    "enquire": "Enquire About Products"
+  },
+
+  
+  "heading": ["VISION AND", "MISSION"],
+  "alt": {
+    "mining": "Dump trucks hauling at an open-cast mine during sunset",
+    "worker": "Technician in an orange helmet servicing heavy mining equipment"
+  },
+  "vision": {
+    "title": "OUR VISION",
+    "text": "To overcome sector challenges by swiftly reaching every small and large business across the country, ensuring our solutions are accessible and impactful for all."
+  },
+  "mission": {
+    "title": "OUR MISSION",
+    "intro": "To deliver exceptional value to our stakeholders, guided by four core principles that define our ethos :",
+    "principles": [
+      { "id": "sustainability", "label": "Sustainability:", "text": "Driving long-term growth while caring for the planet." },
+      { "id": "innovation", "label": "Innovation:", "text": "Pioneering new solutions that set us apart." },
+      { "id": "customer-centricity", "label": "Customer-Centricity:", "text": "Putting our customers at the heart of everything we do." },
+      { "id": "team-empowerment", "label": "Team Empowerment:", "text": "Fostering a culture where every team member thrives." }
+    ]
+  }
+
+}

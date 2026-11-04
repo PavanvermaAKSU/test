@@ -1,0 +1,131 @@
+/* clients.css
+   Static grid of grayscale client logos (7 on the first row, 6 on the second on wide screens).
+   Scoped with the "cl-" prefix. Change the two --cl-grad-* colours to restyle the heading,
+   e.g. green/gold (default) or  #FF4D06 / #E04400  to match the orange pages. */
+
+.cl-section {
+  --cl-grad-from: #ff4d06;
+  --cl-grad-to: #ff4d06;
+  --cl-gold: #ff4d06;
+  --cl-text: #1f2937;
+  --cl-per-row: 2;
+
+  position: relative;
+  font-family: "Times new roman", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #fff;
+  padding: 56px 16px 64px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.cl-section *,
+.cl-section *::before,
+.cl-section *::after {
+  box-sizing: border-box;
+}
+
+/* small gold corner triangle (top-left) */
+.cl-section::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  width: 42px;
+  height: 22px;
+  background: var(--cl-gold);
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 100%);
+  opacity: 0.9;
+}
+
+.cl-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* ---------- Heading ---------- */
+.cl-head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cl-label {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--cl-text);
+}
+
+.cl-title {
+  margin: 8px 0 0;
+  font-size: clamp(26px, 5.5vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  background: linear-gradient(90deg, var(--cl-grad-from), var(--cl-grad-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---------- Logo grid ---------- */
+.cl-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* keeps the last row centred */
+  row-gap: 8px;
+}
+
+.cl-item {
+  flex: 0 0 calc(100% / var(--cl-per-row));
+  max-width: calc(100% / var(--cl-per-row));
+  height: 110px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cl-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+ 
+  opacity: 0.85;
+  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cl-item:hover img {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+.cl-fallback {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.3;
+  color: #64748b;
+}
+
+/* ---------- Responsive: 2 -> 3 -> 5 -> 7 logos per row ---------- */
+@media (min-width: 480px) {
+  .cl-section { --cl-per-row: 3; }
+}
+
+@media (min-width: 720px) {
+  .cl-section { --cl-per-row: 5; padding: 64px 24px 72px; }
+  .cl-item { height: 120px; }
+}
+
+@media (min-width: 1100px) {
+  .cl-section { --cl-per-row: 7; }
+  .cl-head { margin-bottom: 56px; }
+  .cl-item { height: 130px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cl-item img { transition: none; }
+}
