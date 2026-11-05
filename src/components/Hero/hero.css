@@ -1,5 +1,4 @@
 
-
 .hero {
   position: relative;
   min-height: 690px;
@@ -46,15 +45,6 @@
 }
 
 
-.hero-background,
-
-.hero-background {
-  z-index: -2;
-  background-image: url("C:\Users\Shivam\Downloads\New folder\frontend\public\mining-hero.jpg");
-  background-size: cover;
-  background-position: center 55%;
-  transform: scale(1.01);
-}
 
 .hero-overlay {
   z-index: -1;

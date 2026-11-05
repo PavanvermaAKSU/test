@@ -20,7 +20,7 @@ export const aboutData = {
     },
     {
       number: "03",
-      title: "Wholesale Auto & Lubes Distributer",
+      title: "Wholesale Auto & Lubes Distributor",
       description: "Motul, Total ELF, Servo, Gulf, DEF, HP, Castrol",
     },
   ],

@@ -33,7 +33,7 @@ function Hero() {
         preload="metadata"
         aria-hidden="true"
       >
-        <source src="/images/minebg.mp4" type="video/mp4" />
+        <source src="/images/Minebg.mp4" type="video/mp4" />
       </video>
 
       {/* Dark overlay for readable text */}
