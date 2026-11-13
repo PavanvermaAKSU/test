@@ -90,12 +90,11 @@ export const fleet = {
   subtitle:
     "250+ strong vehicles leading the way in coal transport services, OB removal, mining equipment services, earthwork solutions and excavation.",
   items: [
-    { name: "BharatBenz", icon: "fa-solid fa-truck-moving" },
-    { name: "Scania", icon: "fa-solid fa-truck-moving" },
-    { name: "Volvo", icon: "fa-solid fa-truck-moving" },
-    { name: "Tata", icon: "fa-solid fa-truck-moving" },
-    { name: "Eicher", icon: "fa-solid fa-truck-moving" },
-    { name: "Mahindra Pick-up", icon: "fa-solid fa-truck-pickup" },
+    { name: "BharatBenz", icon: "fa-solid fa-truck-moving", img:"../images/bharatbenz.webp" },
+    { name: "Scania", icon: "fa-solid fa-truck-moving", img: "../images/scania.png" },
+    { name: "Tata", icon: "fa-solid fa-truck-moving",img:"../images/tata.webp" },
+    { name: "Eicher", icon: "fa-solid fa-truck-moving",img:"../images/eicher.webp"  },
+    { name: "Mahindra Pick-up", icon: "fa-solid fa-truck-pickup",img:"../images/mahindra..webp"  },
   ],
 };
 

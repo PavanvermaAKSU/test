@@ -59,5 +59,5 @@ export const navbarConfig = {
   topbarMessage: "Trusted partnerships. Reliable solutions.",
   enquiryLabel: "Business Enquiries",
   ctaLabel: "Get in Touch",
-  ctaHref: "#contact",
+  ctaHref: "/contact",
 };

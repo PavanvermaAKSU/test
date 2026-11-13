@@ -92,7 +92,7 @@ const MiningEarthwork = () => {
           <div className="me-fleet-list">
             {fleet.items.map((f) => (
               <div className="me-fleet-item" key={f.name}>
-                <Icon icon={f.icon} img={f.img} alt={f.name} />
+                <Icon icon={f.icon} img={f.img} alt={f.name} href={f.href}/>
                 <span>{f.name}</span>
               </div>
             ))}

@@ -181,9 +181,10 @@
 }
 
 .me-icon-img {
-  width: 1em;
-  height: 1em;
+  width: 4em;
+  height: 4em;
   object-fit: contain;
+  border-radius:20%;
 }
 
 .me-card-body {

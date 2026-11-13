@@ -91,14 +91,14 @@ export const fleet = {
   subtitle:
     "250+ strong vehicles leading the way in OB removal, mining equipment services, earthwork solutions and excavation.",
   items: [
-    { name: "Excavator", icon: "fa-solid fa-trowel" },
-    { name: "Dozer", icon: "fa-solid fa-snowplow" },
-    { name: "Grader", icon: "fa-solid fa-road" },
-    { name: "Drill", icon: "fa-solid fa-screwdriver" },
-    { name: "Volvo", icon: "fa-solid fa-truck-moving" },
-    { name: "Scania", icon: "fa-solid fa-truck-moving" },
-    { name: "BharatBenz", icon: "fa-solid fa-truck-moving" },
-    { name: "Tata", icon: "fa-solid fa-truck-moving" },
+    { name: "Excavator", icon: "fa-solid fa-trowel", img:"../images/exacvator.png", href:"/mining" },
+    { name: "Dozer", icon: "fa-solid fa-snowplow",img:"../images/dozer.png" },
+    { name: "Grader", icon: "fa-solid fa-road",img:"../images/grader.png"  },
+    { name: "Drill", icon: "fa-solid fa-screwdriver",img:"../images/drill.png" },
+    { name: "Volvo", icon: "fa-solid fa-truck-moving",img:"../images/volvo.webp" },
+    { name: "Scania", icon: "fa-solid fa-truck-moving",img:"../images/scania.png" },
+    { name: "BharatBenz", icon: "fa-solid fa-truck-moving",img:"../images/bharatbenz.webp" },
+    { name: "Tata", icon: "fa-solid fa-truck-moving",img:"../images/tata.webp" },
   ],
 };
 

@@ -1,98 +1,82 @@
 // careerdata.js
-// Career page content. Vision, values, divisions, offices and contact come from the company profile PDF.
-// Job openings are NOT in the PDF, so `openings` starts empty (see the example inside it).
-//
-// TO USE AN IMAGE INSTEAD OF AN ICON:
-//   import teamImg from "./assets/team.jpg";
-//   then add `img: teamImg` to a value / division / hero. If `img` is missing the icon is shown.
+// Same exports as before + new: process, perks, faqs. Add `img` to any item to use an image instead of an icon.
 
 export const pageHeader = {
   breadcrumb: [{ label: "Home", href: "/" }, { label: "Career" }],
   eyebrow: "Careers at Samarveer",
-  title: "Build your career with",
-  highlight: "Samarveer",
+  title: "Build your career in mining, coal, fuel and auto parts.",
   subtitle:
-    "Join a team that is transforming the landscape of mining, coal logistics, fuel and auto parts, where every team member thrives.",
-  primaryButton: { label: "Apply Now", href: "#cr-apply" },
-  secondaryButton: { label: "View Openings", href: "#cr-openings" },
-  // heroImg: heroImage,   // optional background / side image
+    "Join a team of 250+ vehicles and 8 branches where site engineers, drivers, accountants and developers all grow together.",
+  primaryButton: { label: "Apply now", href: "#cr-apply" },
+  secondaryButton: { label: "See open roles", href: "#cr-openings" },
+  // heroImg: heroImage,
 };
 
 export const stats = [
-  { icon: "fa-solid fa-landmark", value: "28+", label: "Years of Legacy", img: "./images/legacy.webp" },
-  { icon: "fa-solid fa-truck-moving", value: "250+", label: "Strong Vehicles", img: "./images/strong.webp"  },
-  { icon: "fa-solid fa-location-dot", value: "8", label: "Offices & Branches", img: "./images/range.webp"  },
-  { icon: "fa-solid fa-layer-group", value: "4", label: "Business Divisions", img: "./images/universe.webp" },
+  { icon: "fa-solid fa-landmark", value: 28, suffix: "+", label: "Years of legacy", img: "./images/legacy.webp" },
+  { icon: "fa-solid fa-truck-moving", value: 250, suffix: "+", label: "Vehicles on road", img: "./images/strong.webp" },
+  { icon: "fa-solid fa-location-dot", value: 8, suffix: "", label: "Offices & branches", img: "./images/range.webp" },
+  { icon: "fa-solid fa-layer-group", value: 4, suffix: "", label: "Business divisions", img: "./images/universe.webp" },
 ];
 
 export const vision = {
-  label: "Our Vision",
+  label: "Our vision",
   text: "To overcome sector challenges by swiftly reaching every small and large business across the country, ensuring our solutions are accessible and impactful for all.",
 };
 
 export const values = {
-  title: "Why Work With Us",
-  intro:
-    "Our mission is guided by four core principles that define our ethos, and they shape how we work with each other every day.",
+  title: "Why work with us",
+  intro: "Four principles shape how we work with each other every day.",
   list: [
-    {
-      title: "Team Empowerment",
-      desc: "Fostering a culture where every team member thrives.",
-      icon: "fa-solid fa-users",
-      img: "./images/team.webp",
-    },
-    {
-      title: "Innovation",
-      desc: "Pioneering new solutions that set us apart.",
-      icon: "fa-solid fa-lightbulb",
-      img: "./images/inovat.webp",
-    },
-    {
-      title: "Customer-Centricity",
-      desc: "Putting our customers at the heart of everything we do.",
-      icon: "fa-solid fa-handshake",
-      img: "./images/certicity.webp",
-    },
-    {
-      title: "Sustainability",
-      desc: "Driving long-term growth while caring for the planet.",
-      icon: "fa-solid fa-leaf",
-      img: "./images/sustainability.webp",
-    },
+    { title: "Team empowerment", desc: "A culture where every team member can grow and take ownership.", icon: "fa-solid fa-users", img: "./images/team.webp" },
+    { title: "Innovation", desc: "New solutions that set us apart in a traditional industry.", icon: "fa-solid fa-lightbulb", img: "./images/inovat.webp" },
+    { title: "Customer-centricity", desc: "Our customers sit at the centre of every decision.", icon: "fa-solid fa-handshake", img: "./images/certicity.webp" },
+    { title: "Sustainability", desc: "Long-term growth while caring for the planet.", icon: "fa-solid fa-leaf", img: "./images/sustainability.webp" },
   ],
 };
 
 export const divisions = {
-  title: "Where You Can Grow",
-  intro: "Opportunities across our four business divisions.",
+  title: "Where you can grow",
+  intro: "Pick the division that matches your skills. Each one hires for site, office and tech roles.",
   list: [
     { title: "Mining & Earthwork", desc: "OB removal, mining equipment services, earthwork and excavation.", icon: "fa-solid fa-hill-rockslide", href: "/services/mining", img: "./images/mining.webp" },
     { title: "Coal Supply & Transportation", desc: "Coal and fly ash transport, coal trading and supply.", icon: "fa-solid fa-truck-moving", href: "/services/coal_supply_&_Trading", img: "./images/coal.webp" },
     { title: "Diesel Supply & Fuel Station", desc: "Diesel supply, fuel stations and on-site refueling.", icon: "fa-solid fa-gas-pump", href: "/services/diesel_and_fuel", img: "./images/fuel.webp" },
-    { title: "Auto Parts & Lubricants", desc: "HCV / LCV spare parts, lubricants, tyres and batteries.", icon: "fa-solid fa-screwdriver-wrench", href: "/services/autopart" , img: "./images/autoparts.webp"},
+    { title: "Auto Parts & Lubricants", desc: "HCV / LCV spare parts, lubricants, tyres and batteries.", icon: "fa-solid fa-screwdriver-wrench", href: "/services/autopart", img: "./images/autoparts.webp" },
   ],
 };
 
-// ---- Job openings ----
-// Leave empty until you have roles to list. Example:
-// {
-//   id: "site-supervisor-singrauli",
-//   title: "Site Supervisor",
-//   department: "Mining & Earthwork",
-//   location: "Singrauli (M.P.)",
-//   type: "Full-time",
-//   experience: "3+ years",
-//   desc: "Short description of the role.",
-// },
-export const openings = {
-  title: "Current Openings",
-  emptyTitle: "No Current Openings? No Problem!",
-  emptyText:
-    "Even if you don't see a position that matches your skills and experience, we'd still love to hear from you. Submit your resume through our application form, and our HR team will review your profile. We'll keep your information on record and get in touch if a suitable opportunity arises in the future.",
-  list: [],
+// A real sequence, so numbering is meaningful here.
+export const hiring = {
+  title: "How hiring works",
+  intro: "Four steps, and you hear from us at every one.",
+  steps: [
+    { title: "Apply online", desc: "Fill the form below and attach your resume." },
+    { title: "Profile review", desc: "Our HR team checks your profile against open roles." },
+    { title: "Interview", desc: "A call or visit with the hiring manager." },
+    { title: "Offer & joining", desc: "Offer letter, documents and your joining date." },
+  ],
 };
 
+export const perks = [
+  { icon: "fa-solid fa-chart-line", text: "Clear growth path across 4 divisions" },
+  { icon: "fa-solid fa-shield-halved", text: "Safety-first sites and training" },
+  { icon: "fa-solid fa-map-location-dot", text: "Roles in 8 locations across India" },
+];
 
+export const faqs = [
+  { q: "Can I apply if no role matches my skills?", a: "Yes. Submit the form without choosing a position. HR keeps your profile on record and contacts you when a suitable role opens." },
+  { q: "Which resume formats are accepted?", a: "PDF, DOC and DOCX, up to 5 MB." },
+  { q: "How long does the review take?", a: "Shortlisted candidates are usually contacted by phone or email after HR reviews the profile." },
+];
+
+export const openings = {
+  title: "Current openings",
+  emptyTitle: "No openings right now? Apply anyway.",
+  emptyText:
+    "Submit your resume through the form below. Our HR team will review your profile, keep it on record and get in touch when a suitable role opens.",
+  list: [],
+};
 
 export const locations = [
   "Delhi (HQ)",
@@ -106,10 +90,8 @@ export const locations = [
 ];
 
 export const applyForm = {
-  title: "Apply Now",
-  intro: "Share your details and resume. Our team will review your application.",
-  // Set this to your backend URL (e.g. "/api/careers") to POST the form data + resume.
-  // If left empty, the form opens an email draft to the address below instead.
+  title: "Apply now",
+  intro: "Share your details and resume. Fields marked * are required.",
   endpoint: "",
   maxFileMB: 5,
   acceptedFiles: ".pdf,.doc,.docx",

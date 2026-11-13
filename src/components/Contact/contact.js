@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import contactData from "./contactdata";
 import "./contact.css";
 
@@ -12,21 +11,54 @@ const initialForm = {
   message: "",
 };
 
+// ---- Head office map (edit here) ----
+const MAP = {
+  label: "Head Office on Google Maps",
+  lat: 24.5541902,
+  lng: 80.8400797,
+  zoom: 16,
+  link:
+    "https://www.google.com/maps/place/Roshan+Jeep+%26+Tractor+Parts/@24.5541205,80.8377846,16.72z/data=!4m6!3m5!1s0x39847ff4715789b3:0x1a33c3d4c0e7e5e9!8m2!3d24.5541902!4d80.8400797!16s%2Fg%2F11lglk310t?hl=en-GB",
+};
+const MAP_SRC = `https://maps.google.com/maps?q=${MAP.lat},${MAP.lng}&z=${MAP.zoom}&output=embed`;
+
+const STATUS_TEXT = {
+  loading: "Sending your enquiry...",
+  success: "Thank you! Your enquiry has been sent. Our team will contact you soon.",
+  error: "We couldn't send your enquiry. Please check your details and try again.",
+};
+
+// Mobile/phone numbers are not shown in the contact details list.
+const isPhoneDetail = (d) =>
+  /phone|mobile|call/i.test(`${d.id} ${d.label}`) || /^tel:/i.test(d.href || "");
+
 function Contact() {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("");
+  const [popup, setPopup] = useState(null); // { type: "success" | "error", name, service }
+  const popupBtnRef = useRef(null);
+
+  const closePopup = () => setPopup(null);
+
+  // Popup: focus the button, close on Esc, lock page scroll while open
+  useEffect(() => {
+    if (!popup) return undefined;
+    const onKey = (e) => e.key === "Escape" && closePopup();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    popupBtnRef.current?.focus();
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [popup]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    setForm((previous) => ({
-      ...previous,
-      [name]: value,
-    }));
-
+    setForm((previous) => ({ ...previous, [name]: value }));
     setStatus("");
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,9 +69,7 @@ function Contact() {
         `${process.env.REACT_APP_API_URL}/api/enquiries/`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: form.name,
             company: form.company,
@@ -57,45 +87,64 @@ function Contact() {
         throw new Error(data.detail || "Enquiry submission failed");
       }
 
-      setStatus("success");
+      setStatus("");
+      setPopup({
+        type: "success",
+        name: form.name.trim().split(" ")[0],
+        service: form.service,
+      });
       setForm(initialForm);
     } catch (error) {
       console.error("Enquiry error:", error);
-      setStatus("error");
+      setStatus("");
+      setPopup({ type: "error" });
     }
   };
-
 
   return (
     <section className="contact-section" id="contact">
       <div className="contact-container">
         <div className="contact-intro">
-          <span className="contact-eyebrow">
-            {contactData.eyebrow}
-          </span>
+          <span className="contact-eyebrow">{contactData.eyebrow}</span>
 
           <h2>{contactData.title}</h2>
 
-          <p className="contact-description">
-            {contactData.description}
-          </p>
+          <p className="contact-description">{contactData.description}</p>
 
           <div className="contact-details">
-            {contactData.details.map((detail) => (
-              <div className="contact-detail" key={detail.id}>
-                <span className="contact-detail-label">
-                  {detail.label}
-                </span>
+            {contactData.details
+              .filter((detail) => !isPhoneDetail(detail))
+              .map((detail) => (
+                <div className="contact-detail" key={detail.id}>
+                  <span className="contact-detail-label">{detail.label}</span>
 
-                {detail.href ? (
-                  <a href={detail.href}>
-                    {detail.value}
-                  </a>
-                ) : (
-                  <span>{detail.value}</span>
-                )}
-              </div>
-            ))}
+                  {detail.href ? (
+                    <a href={detail.href}>{detail.value}</a>
+                  ) : (
+                    <span>{detail.value}</span>
+                  )}
+                </div>
+              ))}
+          </div>
+
+          {/* Map sits directly below the address */}
+          <div className="contact-map">
+            <iframe
+              title="Head office location map"
+              src={MAP_SRC}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <a
+              className="contact-map-link"
+              href={MAP.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open in Google Maps
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
 
@@ -105,9 +154,7 @@ function Contact() {
           <form onSubmit={handleSubmit}>
             <div className="contact-form-grid">
               <div className="contact-field">
-                <label htmlFor="contact-name">
-                  Full Name *
-                </label>
+                <label htmlFor="contact-name">Full Name *</label>
                 <input
                   id="contact-name"
                   name="name"
@@ -122,9 +169,7 @@ function Contact() {
               </div>
 
               <div className="contact-field">
-                <label htmlFor="contact-company">
-                  Company Name
-                </label>
+                <label htmlFor="contact-company">Company Name</label>
                 <input
                   id="contact-company"
                   name="company"
@@ -138,9 +183,7 @@ function Contact() {
               </div>
 
               <div className="contact-field">
-                <label htmlFor="contact-phone">
-                  Phone Number *
-                </label>
+                <label htmlFor="contact-phone">Phone Number *</label>
                 <input
                   id="contact-phone"
                   name="phone"
@@ -156,9 +199,7 @@ function Contact() {
               </div>
 
               <div className="contact-field">
-                <label htmlFor="contact-email">
-                  Business Email *
-                </label>
+                <label htmlFor="contact-email">Business Email *</label>
                 <input
                   id="contact-email"
                   name="email"
@@ -185,9 +226,7 @@ function Contact() {
                 onChange={handleChange}
                 required
               >
-                <option value="">
-                  {contactData.form.servicePlaceholder}
-                </option>
+                <option value="">{contactData.form.servicePlaceholder}</option>
 
                 {contactData.form.services.map((service) => (
                   <option key={service} value={service}>
@@ -198,9 +237,7 @@ function Contact() {
             </div>
 
             <div className="contact-field">
-              <label htmlFor="contact-message">
-                Your Requirements *
-              </label>
+              <label htmlFor="contact-message">Your Requirements *</label>
 
               <textarea
                 id="contact-message"
@@ -215,19 +252,91 @@ function Contact() {
               />
             </div>
 
-            <button className="contact-submit" type="submit">
+            <button
+              className="contact-submit"
+              type="submit"
+              disabled={status === "loading"}
+            >
               {contactData.form.submitText}
               <span aria-hidden="true">→</span>
             </button>
 
-            {status && (
-              <p className="contact-status" role="status">
-                {status}
+            {status === "loading" && (
+              <p className="contact-status" role="status" aria-live="polite">
+                {STATUS_TEXT.loading}
               </p>
             )}
           </form>
         </div>
       </div>
+
+      {popup && (
+        <div className="cp-overlay" onClick={closePopup}>
+          <div
+            className={`cp-modal cp-modal--${popup.type}`}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cp-title"
+            aria-describedby="cp-desc"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="cp-close"
+              aria-label="Close message"
+              onClick={closePopup}
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+
+            <div className="cp-icon" aria-hidden="true">
+              {popup.type === "success" ? (
+                <svg viewBox="0 0 52 52">
+                  <circle className="cp-ring" cx="26" cy="26" r="23" />
+                  <path className="cp-tick" d="M15 27l8 8 15-17" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 52 52">
+                  <circle className="cp-ring" cx="26" cy="26" r="23" />
+                  <path className="cp-tick" d="M18 18l16 16M34 18L18 34" />
+                </svg>
+              )}
+            </div>
+
+            {popup.type === "success" ? (
+              <>
+                <h3 id="cp-title">
+                  Thank you{popup.name ? `, ${popup.name}` : ""}!
+                </h3>
+                <p id="cp-desc">
+                  Your enquiry has been sent successfully. Our team will review
+                  it and contact you shortly.
+                </p>
+                {popup.service && (
+                  <span className="cp-chip">{popup.service}</span>
+                )}
+              </>
+            ) : (
+              <>
+                <h3 id="cp-title">Enquiry not sent</h3>
+                <p id="cp-desc">
+                  Something went wrong while sending your enquiry. Your details
+                  are still in the form, so please try again.
+                </p>
+              </>
+            )}
+
+            <button
+              ref={popupBtnRef}
+              type="button"
+              className="contact-submit cp-btn"
+              onClick={closePopup}
+            >
+              {popup.type === "success" ? "Done" : "Try again"}
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
