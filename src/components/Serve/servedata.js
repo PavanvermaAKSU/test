@@ -5,7 +5,7 @@
 export const SERVE_CONTENT = {
   title: "Where we serve",
   lead:
-    "A head office in Delhi and branches at mining and power hubs across Odisha, Uttar Pradesh, Madhya Pradesh, Jharkhand, Andhra Pradesh and Telangana, so parts, fuel and transport reach your site faster.",
+    "A head office in Delhi and branches at mining and power hubs across Odisha, Uttar Pradesh, Madhya Pradesh, Jharkhand, Andhra Pradesh and Telangana, so parts, fuel and transport reach your site faster. We are also stepping forward to increase our Hubs",
   mapLabel: "Map of Samarveer branch locations across India",
 };
 
@@ -35,7 +35,7 @@ export const CITIES = [
   { id: "barbil", name: "Barbil", state: "Odisha", role: "Branch",
     lon: 85.38, lat: 22.1, label: { anchor: "start", dx: 12, dy: 4 } },
   { id: "singrauli", name: "Singrauli", state: "Madhya Pradesh", role: "Branch",
-    lon: 82.7, lat: 24.2, mapLabel: "Singrauli / Anpara", label: { anchor: "middle", dx: 0, dy: -14 } },
+    lon: 82.7, lat: 24.2, mapLabel: "Singrauli  Anpara", label: { anchor: "middle", dx: 0, dy: -14 } },
   { id: "anpara", name: "Anpara", state: "Uttar Pradesh", role: "Branch",
     lon: 82.7, lat: 24.2, pin: "singrauli" },
   { id: "satna", name: "Satna", state: "Madhya Pradesh", role: "Branch",

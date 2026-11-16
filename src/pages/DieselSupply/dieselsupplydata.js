@@ -89,7 +89,7 @@ export const bulk = {
 export const cta = {
   title: "Need diesel or on-site refueling?",
   text: "Talk to our team about diesel supply, bulk fuel or on-site refueling for your site or fleet.",
-  phone: "+91 9353111111",
+  phone: "",
   email: "Info@samarveerautoandlube.com",
   buttonLabel: "Send Enquiry",
   buttonHref: "#contact",

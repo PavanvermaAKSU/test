@@ -116,7 +116,7 @@ export const categories = [
 export const cta = {
   title: "Looking for genuine parts or lubricants?",
   text: "Tell us what your fleet or site needs and our team will get back to you.",
-  phone: "+91 9353111111",
+  phone: "",
   email: "Info@samarveerautoandlube.com",
   buttonLabel: "Send Enquiry",
   buttonHref: "/contact",

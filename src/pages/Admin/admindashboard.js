@@ -5,6 +5,10 @@ import "./admin.css";
 const API_URL =
   process.env.REACT_APP_API_URL || "http://localhost:8000";
 
+const IDLE_TIMEOUT = 30 * 60 * 1000 //30 Mint
+const HEARTBEAT_INTERVAL = 5 * 60 * 1000 // 5 Minutes
+
+
 const EMPTY_JOB = {
   title: "",
   department: "",
@@ -82,6 +86,8 @@ export default function AdminDashboard() {
     };
   }
 
+
+
   // Initial dashboard loading
   useEffect(() => {
     if (!token) {
@@ -100,6 +106,101 @@ export default function AdminDashboard() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [analyticsDays]);
+
+  useEffect(() => {
+    if (!token) return;
+
+    let idleTimer;
+    let heartbeatTimer;
+    let lastActivity = Date.now();
+    let loggingOut = false;
+
+    const clearSession = () => {
+      sessionStorage.removeItem("admin_token");
+      window.location.replace("/admin");
+    };
+
+    const logoutUser = async () => {
+      if (loggingOut) return;
+
+      loggingOut = true;
+
+      try {
+        await fetch(`${API_URL}/api/admin/logout`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      } catch (error) {
+        console.error("Logout request failed:", error);
+      } finally {
+        clearSession();
+      }
+    };
+
+    const resetIdleTimer = () => {
+      lastActivity = Date.now();
+
+      clearTimeout(idleTimer);
+
+      idleTimer = setTimeout(() => {
+        logoutUser();
+      }, IDLE_TIMEOUT);
+    };
+
+    const activityEvents = [
+      "mousemove",
+      "mousedown",
+      "keydown",
+      "scroll",
+      "touchstart",
+      "click",
+    ];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, resetIdleTimer);
+    });
+
+    resetIdleTimer();
+
+    heartbeatTimer = setInterval(async () => {
+      if (document.visibilityState !== "visible") return;
+
+      // Do not keep an inactive session alive.
+      if (Date.now() - lastActivity >= IDLE_TIMEOUT) {
+        logoutUser();
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `${API_URL}/api/admin/session/heartbeat`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.status === 401 || response.status === 403) {
+          clearSession();
+        }
+      } catch (error) {
+        console.error("Session heartbeat failed:", error);
+      }
+    }, HEARTBEAT_INTERVAL);
+
+    return () => {
+      clearTimeout(idleTimer);
+      clearInterval(heartbeatTimer);
+
+      activityEvents.forEach((event) => {
+        window.removeEventListener(event, resetIdleTimer);
+      });
+    };
+  }, [token]);
 
   // =========================================
   // CUSTOMER ENQUIRIES
@@ -494,10 +595,20 @@ export default function AdminDashboard() {
     fetchJobs();
   }
 
-  function logout() {
-    sessionStorage.removeItem("admin_token");
-    window.location.replace("/admin");
+  async function logout() {
+    try {
+      await fetch(`{API_URL}/api/admin/logout`, {
+        method: "POST",
+        headers: authHeaders(),
+      });
+    } catch (error) {
+      console.error("Logout failed:", error);
+    } finally {
+      sessionStorage.removeItem("admin_token");
+      window.location.replace("/admin");
+    }
   }
+  
 
   // Initial loading screen
   if (loading) {

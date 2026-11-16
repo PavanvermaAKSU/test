@@ -65,14 +65,14 @@ export const perks = [
 ];
 
 export const faqs = [
-  { q: "Can I apply if no role matches my skills?", a: "Yes. Submit the form without choosing a position. HR keeps your profile on record and contacts you when a suitable role opens." },
+  { q: "Can I apply if no role matches my skills?", a: "Yes don't worry. You can submit the form without choosing a position. HR keeps your profile on record and contacts you when a suitable role opens. If you have applied then we will review in future oppurtinities." },
   { q: "Which resume formats are accepted?", a: "PDF, DOC and DOCX, up to 5 MB." },
-  { q: "How long does the review take?", a: "Shortlisted candidates are usually contacted by phone or email after HR reviews the profile." },
+  { q: "How long does the review take?", a: "Immediately, Shortlisted candidates are usually contacted by phone or email after HR reviews the profile." },
 ];
 
 export const openings = {
   title: "Current openings",
-  emptyTitle: "No openings right now? Apply anyway.",
+  emptyTitle: "No openings right now? But you can apply without choosing any of openings our HR team will be review your profile for suitable openings.",
   emptyText:
     "Submit your resume through the form below. Our HR team will review your profile, keep it on record and get in touch when a suitable role opens.",
   list: [],

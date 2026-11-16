@@ -116,7 +116,7 @@ export const trusted = {
 export const cta = {
   title: "Need coal supply or transport?",
   text: "Talk to our team about coal and fly ash transportation or reliable coal supply for your plant or project.",
-  phone: "+91 9353111111",
+  phone: "",
   email: "Info@samarveerautoandlube.com",
   buttonLabel: "Send Enquiry",
   buttonHref: "/contact",

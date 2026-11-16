@@ -28,7 +28,7 @@ const visionData = {
       {
         id: "sustainability",
         label: "Sustainability:",
-        text: "Driving long-term growth while caring for the planet.",
+        text: "Creating responsible, long-term growth with planet and customers.",
       },
       {
         id: "innovation",

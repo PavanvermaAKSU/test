@@ -124,7 +124,7 @@ export const branches = {
 };
 
 export const contact = {
-  phone: "+91 9353111111",
+  phone: "",
   email: "Info@samarveerautoandlube.com",
   status: "Corporate Portal Active",
 };

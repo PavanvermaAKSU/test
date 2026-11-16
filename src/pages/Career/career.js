@@ -479,7 +479,7 @@ const Career = () => {
 
         {/* FAQ */}
         <section>
-          <div className="cr-head"><h2 className="cr-heading">Common questions</h2></div>
+          <div className="cr-head"><h2 className="cr-heading">FAQs</h2></div>
           <div className="cr-faq">
             {faqs.map((f) => (
               <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>

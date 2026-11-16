@@ -105,7 +105,7 @@ export const fleet = {
 export const cta = {
   title: "Need mining or earthwork support?",
   text: "Talk to our team about OB removal, mining equipment services, earthwork or excavation for your project.",
-  phone: "+91 9353111111",
+  phone: "",
   email: "Info@samarveerautoandlube.com",
   buttonLabel: "Send Enquiry",
   buttonHref: "/contact",
