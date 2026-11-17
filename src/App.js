@@ -1,5 +1,6 @@
 
 import { Routes, Route } from "react-router-dom";
+import { Analytics } from '@vercel/analytics/react';
 
 import HomeSEO from "./HomeSEO";
 import Navbar from "./components/Navbar/navbar";
@@ -72,6 +73,7 @@ function App() {
         element={<h1>404 - Page Not Found</h1>}
       />
     </Routes>
+    <Analytics />
    </>
   );
 }
