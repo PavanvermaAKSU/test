@@ -4,6 +4,7 @@ import {
   pageHeader, stats, vision, values, divisions, hiring, perks, faqs,
   openings, locations, applyForm, contact,
 } from "./careerdata";
+import SEO from "../../components/SEO/SEO";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 const MAX_FILE_SIZE = (applyForm.maxFileMB || 5) * 1024 * 1024;
@@ -179,6 +180,14 @@ const Career = () => {
   const field = (name) => `cr-field${errors[name] ? " has-error" : ""}`;
 
   return (
+   <>
+    <SEO
+     
+     title="Career SamarveerGroup | Give you career path into Bright with us | PAN INDIA"
+     description= " We are mostly looking peoples to join us, You can apply job here we have openings if not always you can submit"
+     path="/career"
+    />
+
     <section className="cr-section" id="career">
       {/* HERO */}
       <header className="cr-hero">
@@ -488,6 +497,7 @@ const Career = () => {
         </section>
       </div>
     </section>
+   </>
   );
 };
 

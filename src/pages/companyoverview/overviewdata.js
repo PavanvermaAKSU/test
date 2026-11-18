@@ -112,14 +112,14 @@ export const branches = {
   intro:
     "Strategic operational branches established across key industrial & mining corridors:",
   list: [
-    { name: "Delhi (HQ)", hq: true },
-    { name: "Singrauli (M.P.)" },
-    { name: "Satna (M.P.)" },
-    { name: "Anpara (U.P.)" },
-    { name: "Barbil (Odisha)" },
-    { name: "Visakhapatnam (A.P.)" },
-    { name: "Hazaribagh (JH)" },
-    { name: "Hyderabad (TS)" },
+    { name: "Delhi (HQ) GSTIN: 07ABICS8201M1Z0 ", hq: true },
+    { name: "Satna (M.P.) GSTIN: 23ABICS8201M1Z6", hq: true },
+    { name: "Singrauli (M.P.) GSTIN: 23ABICS8201M1Z6" },
+    { name: "Anpara (U.P.) GSTIN: 09ABICS8201M1ZW" },
+    { name: "Barbil (Odisha) GSTIN: 21ABICS8201M1ZA" },
+    { name: "Visakhapatnam (A.P.) GSTIN: 37ABICS8201M1ZX" },
+    { name: "Hazaribagh (JH) GSTIN: 20ABICS8201M1ZC" },
+    { name: "Hyderabad (TS) GSTIN: 36ABICS8201M1ZZ" },
   ],
 };
 

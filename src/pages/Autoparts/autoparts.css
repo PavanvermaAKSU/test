@@ -1,6 +1,10 @@
 /* autoparts.css
    Scoped with the "ap-" prefix. Change --ap-accent to restyle the section.
-   Mobile-first and responsive on all screen sizes. */
+   Mobile-first and responsive on all screen sizes.
+
+   Border radius is size-based: every element uses one of the --ap-r-* tokens
+   according to its size (small -> large). The tokens grow on bigger screens,
+   so change them once in .ap-section and everything stays consistent. */
 
 .ap-section {
   --ap-accent: #FF4D06;
@@ -11,6 +15,14 @@
   --ap-border: #E2E8F0;
   --ap-muted: #64748b;
 
+  /* Radius scale (mobile) */
+  --ap-r-sm: 8px;    /* small: icon boxes, buttons */
+  --ap-r-md: 10px;   /* medium: product tiles */
+  --ap-r-lg: 14px;   /* large: category cards, CTA banner */
+  --ap-r-xl: 16px;   /* extra large: whole section */
+  --ap-r-pill: 999px;
+
+  border-radius: var(--ap-r-xl);
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   color: #1f2937;
   background: var(--ap-slate);
@@ -73,7 +85,7 @@
 .ap-eyebrow {
   display: inline-block;
   padding: 5px 14px;
-  border-radius: 999px;
+  border-radius: var(--ap-r-pill);
   background: rgba(255, 77, 6, 0.15);
   color: var(--ap-accent);
   font-size: 11px;
@@ -122,6 +134,7 @@
 .ap-heading--dark { color: #475569; }
 .ap-heading--dark i { color: var(--ap-accent); }
 
+/* proportional: the radius scales with the icon's own size */
 .ap-icon-img {
   border-radius: 20%;
   width: 3em;
@@ -136,7 +149,7 @@
   align-items: flex-start;
   gap: 20px;
   padding: 28px 24px;
-  border-radius: 16px;
+  border-radius: var(--ap-r-lg);
   background: linear-gradient(135deg, var(--ap-accent), var(--ap-accent-dark));
   color: #fff;
   box-shadow: 0 16px 36px -10px rgba(255, 77, 6, 0.5);
@@ -169,7 +182,7 @@
   align-items: center;
   gap: 10px;
   padding: 12px 24px;
-  border-radius: 10px;
+  border-radius: var(--ap-r-sm);
   background: var(--ap-charcoal);
   color: #fff;
   font-size: 14px;
@@ -180,7 +193,6 @@
 }
 
 .ap-btn:hover { background: #000; transform: translateX(3px); }
-
 
 /* ---------- Jump chips ---------- */
 .ap-jump {
@@ -199,7 +211,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: var(--ap-r-pill);
   background: #fff;
   border: 1px solid var(--ap-border);
   color: #334155;
@@ -232,7 +244,7 @@
   scroll-margin-top: 90px;
   padding: 20px;
   background: #fff;
-  border-radius: 16px;
+  border-radius: var(--ap-r-lg);
   border: 1px solid var(--ap-border);
   box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.08);
   transition: border-color 0.25s, box-shadow 0.25s;
@@ -259,7 +271,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: var(--ap-r-sm);
   background: var(--ap-charcoal);
   color: var(--ap-accent);
   font-size: 18px;
@@ -277,7 +289,7 @@
 .ap-count {
   min-width: 26px;
   padding: 2px 8px;
-  border-radius: 999px;
+  border-radius: var(--ap-r-pill);
   background: rgba(255, 77, 6, 0.12);
   color: var(--ap-accent);
   font-size: 12px;
@@ -309,7 +321,7 @@
   flex-direction: column;
   min-width: 0;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: var(--ap-r-md);
   background: #fff;
   border: 1px solid var(--ap-border);
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
@@ -341,6 +353,7 @@
   width: calc(100% - 16px);
   height: calc(100% - 16px);
   object-fit: contain;
+  border-radius: calc(var(--ap-r-md) - 4px);
 }
 
 /* Heading bar: always sits at the bottom of the tile, so every bar in a row lines up */
@@ -363,8 +376,14 @@
   overflow-wrap: anywhere;
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Responsive (radius grows with screen size) ---------- */
 @media (min-width: 640px) {
+  .ap-section {
+    --ap-r-sm: 10px;
+    --ap-r-md: 12px;
+    --ap-r-lg: 18px;
+    --ap-r-xl: 24px;
+  }
   .ap-wrap { padding: 0 24px; }
   .ap-hero { padding: 56px 0 64px; }
   .ap-body { padding-top: 48px; padding-bottom: 72px; gap: 40px; }
@@ -375,6 +394,12 @@
 }
 
 @media (min-width: 900px) {
+  .ap-section {
+    --ap-r-sm: 12px;
+    --ap-r-md: 14px;
+    --ap-r-lg: 20px;
+    --ap-r-xl: 32px;
+  }
   .ap-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .ap-cat.is-wide { grid-column: 1 / -1; }
   .ap-cat.is-wide .ap-items { --ap-cols: 4; }

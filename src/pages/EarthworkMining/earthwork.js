@@ -2,6 +2,7 @@
 import React from "react";
 import "./earthwork.css";
 import { pageHeader, services, stages, fleet, cta } from "./earthworkdata";
+import SEO from "../../components/SEO/SEO";
 
 // Shows an image if `img` is given, otherwise the Font Awesome icon.
 const Icon = ({ icon, img, alt = "" }) =>
@@ -13,6 +14,13 @@ const Icon = ({ icon, img, alt = "" }) =>
 
 const MiningEarthwork = () => {
   return (
+   <>
+      <SEO
+        title="Overburden Removal & OBR Services | Samarveer Groups"
+        description="Explore Samarveer's overburden removal (Ob-Removal), Mining exacavation and earthmoving capabilities. Constact our team for mining and transportation project enwuires."
+        path="/mining-transportation/overburden-removal/"
+      />
+   
     <section className="me-section" id="mining-earthwork">
       {/* ===== Page header ===== */}
       <div className="me-hero">
@@ -119,6 +127,7 @@ const MiningEarthwork = () => {
         </div>
       </div>
     </section>
+   </>
   );
 };
 

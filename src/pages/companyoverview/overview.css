@@ -271,8 +271,6 @@
   transform: translateY(-3px);
 }
 
-
-
 .co-pillar h3 {
   font-size: 14px;
   font-weight: 700;
@@ -294,14 +292,25 @@
   color: var(--co-accent);
 }
 
-/* ---------- Leadership + Branches ---------- */
+/* ---------- Leadership + Branches ----------
+   FIX: both panels are equal-height flex columns, every inner column uses
+   minmax(0, ...) / min-width:0 so long text can never push into a neighbour,
+   headers wrap instead of colliding, and leader cards pin their description
+   to the bottom so every card lines up even when the text lengths differ. */
 .co-duo {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
+  align-items: stretch;
+}
+
+.co-duo > * {
+  min-width: 0;
 }
 
 .co-panel {
+  display: flex;
+  flex-direction: column;
   border-radius: 12px;
   padding: 20px;
   color: #fff;
@@ -309,9 +318,6 @@
 
 .co-leadership {
   background: var(--co-charcoal);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .co-branches {
@@ -322,21 +328,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 6px 12px;
   margin-bottom: 16px;
   padding-bottom: 12px;
   border-bottom: 1px solid #334155;
 }
 
 .co-panel-head h2 {
+  flex: 1 1 auto;
+  min-width: 0;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.15em;
+  line-height: 1.5;
   text-transform: uppercase;
   color: var(--co-accent);
 }
 
 .co-panel-head > span {
+  flex: none;
+  white-space: nowrap;
   font-size: 11px;
   color: #94a3b8;
 }
@@ -351,17 +363,25 @@
   border-radius: 4px;
 }
 
+/* leaders: columns adapt to the space (3 -> 2 -> 1), never overlap */
 .co-leaders {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 136px), 1fr));
+  align-content: start;
   gap: 12px;
+  margin-bottom: 16px;
 }
 
 .co-leader {
-  padding: 12px;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 14px;
+  border-radius: 10px;
   background: rgba(20, 23, 29, 0.6);
   border: 1px solid rgba(51, 65, 85, 0.6);
+  border-left: 3px solid var(--co-accent);
   transition: border-color 0.25s;
 }
 
@@ -372,30 +392,44 @@
 .co-leader-name {
   font-size: 14px;
   font-weight: 700;
+  line-height: 1.3;
   color: var(--co-accent);
+  overflow-wrap: anywhere;
 }
 
 .co-leader-role {
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 500;
+  line-height: 1.4;
   color: #cbd5e1;
+  overflow-wrap: anywhere;
 }
 
 .co-leader-desc {
-  margin-top: 8px;
-  font-size: 10px;
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: 11px;
+  line-height: 1.55;
   color: #94a3b8;
+  overflow-wrap: anywhere;
 }
 
 .co-values {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 16px;
-  margin-top: 16px;
-  padding-top: 12px;
+  align-items: center;
+  gap: 8px 18px;
+  margin-top: auto;
+  padding-top: 14px;
   border-top: 1px solid #1e293b;
-  font-size: 11px;
+  font-size: 11.5px;
+  line-height: 1.4;
   color: #cbd5e1;
+}
+
+.co-values > * {
+  display: inline-flex;
+  align-items: center;
 }
 
 .co-values i {
@@ -403,28 +437,39 @@
 }
 
 .co-branches-intro {
-  margin-bottom: 12px !important;
+  margin-bottom: 14px !important;
   font-size: 12px;
+  line-height: 1.6;
   color: #cbd5e1;
 }
 
+/* branch chips: equal-width tiles in a tidy grid instead of ragged wrapping */
 .co-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 132px), 1fr));
+  align-content: start;
+  gap: 8px;
 }
 
 .co-chip {
-  padding: 4px 10px;
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 8px 10px;
+  border-radius: 6px;
   font-size: 12px;
+  line-height: 1.35;
   background: #1e293b;
   border: 1px solid #334155;
   color: #e2e8f0;
+  overflow-wrap: anywhere;
 }
 
 .co-chip i {
-  margin-right: 6px;
+  flex: none;
+  margin-right: 0;
   color: #94a3b8;
 }
 
@@ -557,11 +602,48 @@
   .co-logo-gear { font-size: 28px; }
   .co-logo-truck { right: 9px; bottom: 9px; }
   .co-identity { align-items: flex-start; }
+  .co-panel { padding: 18px 16px; }
+
+  /* ---- mobile: tidy 2-column grids everywhere ---- */
+  .co-card { border-radius: 16px; }
+  .co-header { gap: 18px; padding-bottom: 20px; }
+
+  .co-stats { gap: 12px; }
+  .co-stat { padding: 16px 10px; }
+  .co-stat-value { font-size: 26px; }
+
+  .co-pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .co-pillar { padding: 14px 12px; }
+  .co-pillar h3 { font-size: 13px; }
+
+  .co-leaders { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .co-leader { padding: 12px 10px 12px 12px; }
+  .co-leader-name { font-size: 13px; }
+
+  .co-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .co-chip { padding: 9px 10px; }
+
+  .co-clients { padding: 16px 14px; }
+  .co-clients-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .co-client { justify-content: center; padding: 10px 8px; text-align: center; }
+
+  /* an odd last tile spans the full row so the grid never ends lopsided */
+  .co-leaders > :last-child:nth-child(odd),
+  .co-chips > :last-child:nth-child(odd),
+  .co-clients-list > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+  .co-values { gap: 8px 14px; }
+}
+
+/* very small phones: grids drop to a single column so text never gets cramped */
+@media (max-width: 359px) {
+  .co-pillars,
+  .co-leaders,
+  .co-chips { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (min-width: 640px) {
   .co-pillars { grid-template-columns: repeat(2, 1fr); }
-  .co-leaders { grid-template-columns: repeat(3, 1fr); }
   .co-clients-head > span { display: inline; }
   .co-footer { flex-direction: row; }
 }
@@ -575,7 +657,7 @@
   .co-header { flex-direction: row; align-items: center; justify-content: space-between; }
   .co-badges { flex-direction: column; align-items: flex-end; }
   .co-pillars { grid-template-columns: repeat(4, 1fr); }
-  .co-duo { grid-template-columns: 7fr 5fr; }
+  .co-duo { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
 }
 
 @media (prefers-reduced-motion: reduce) {

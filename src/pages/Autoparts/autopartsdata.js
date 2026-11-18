@@ -11,7 +11,7 @@
 export const pageHeader = {
   breadcrumb: [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
+    { label: "Services", href: "/automotive" },
     { label: "Auto Parts & Lubricants" },
   ],
   eyebrow: "Our Offerings",
@@ -36,9 +36,7 @@ export const categories = [
       { name: "Gulf", img: "../images/gulf.webp" },
       { name: "Valvoline", img: "../images/valvoline.webp" },
       { name: "Castrol", img: "../images/castrol.webp" },
-      { name: "Bharat Petroleum (MAK)", img: "../images/bharatpetrolium.webp" },
-      
-      
+      { name: "Bharat Petroleum (MAK)", img: "../images/bharatpetrolium.webp" }, 
     ],
   },
   {

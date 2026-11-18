@@ -2,6 +2,7 @@
 import React from "react";
 import "./autoparts.css";
 import { pageHeader, categories, cta } from "./autopartsdata";
+import SEO from "../../components/SEO/SEO";
 
 // Shows an image if `img` is given, otherwise the Font Awesome icon.
 const Icon = ({ icon, img, alt = "" }) =>
@@ -13,6 +14,14 @@ const Icon = ({ icon, img, alt = "" }) =>
 
 const AutoParts = () => {
   return (
+
+   <>
+    <SEO 
+      title = "HCV/LCV & Automotive Spare Parts & Lubricants Supplier | Samarveergroup"
+      description = "Discover Samarveer's range of HCV and LCV spare parts, automotive lubricants, commercial vehicle tyres, batteries, industrial bearings and essential vehicle components for wholesale and institutional buyers."
+      path = "/automotive/autoparts-&-lubricants"
+    />
+
     <section className="ap-section" id="auto-parts-lubricants">
       {/* ===== Page header ===== */}
       <div className="ap-hero">
@@ -98,6 +107,7 @@ const AutoParts = () => {
         </div>
       </div>
     </section>
+   </>
   );
 };
 

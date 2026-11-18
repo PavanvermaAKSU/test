@@ -1,6 +1,10 @@
 /* miningearthwork.css
    Scoped with the "me-" prefix. Change --me-accent to restyle the section.
-   Mobile-first and responsive on all screen sizes. */
+   Mobile-first and responsive on all screen sizes.
+
+   Border radius is size-based: every element uses one of the --me-r-* tokens
+   according to its size (small -> large). The tokens grow on bigger screens,
+   so change them once in .me-section and everything stays consistent. */
 
 .me-section {
   --me-accent: #FF4D06;
@@ -11,6 +15,13 @@
   --me-border: #E2E8F0;
   --me-muted: #64748b;
 
+  /* Radius scale (mobile) */
+  --me-r-sm: 8px;    /* small: stage chips, fleet items, button, badge */
+  --me-r-lg: 14px;   /* large: service cards, stages, fleet box, CTA */
+  --me-r-xl: 16px;   /* extra large: whole section */
+  --me-r-pill: 999px;
+
+  border-radius: var(--me-r-xl);
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   color: #1f2937;
   background: var(--me-slate);
@@ -82,7 +93,7 @@
 .me-eyebrow {
   display: inline-block;
   padding: 5px 14px;
-  border-radius: 999px;
+  border-radius: var(--me-r-pill);
   background: rgba(255, 77, 6, 0.15);
   color: var(--me-accent);
   font-size: 11px;
@@ -132,7 +143,7 @@
   flex-direction: column;
   overflow: hidden;
   background: #fff;
-  border-radius: 16px;
+  border-radius: var(--me-r-lg);
   border: 1px solid var(--me-border);
   box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.08);
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
@@ -172,7 +183,7 @@
   top: 12px;
   right: 14px;
   padding: 3px 10px;
-  border-radius: 6px;
+  border-radius: calc(var(--me-r-sm) - 2px);
   background: var(--me-accent);
   color: #fff;
   font-size: 12px;
@@ -180,11 +191,12 @@
   letter-spacing: 0.06em;
 }
 
+/* proportional: the radius scales with the icon's own size */
 .me-icon-img {
   width: 4em;
   height: 4em;
   object-fit: contain;
-  border-radius:20%;
+  border-radius: 20%;
 }
 
 .me-card-body {
@@ -235,7 +247,7 @@
   flex-direction: column;
   gap: 20px;
   padding: 24px;
-  border-radius: 16px;
+  border-radius: var(--me-r-lg);
   background: #fff;
   border: 1px solid var(--me-border);
   border-left: 5px solid var(--me-accent);
@@ -266,7 +278,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  border-radius: 10px;
+  border-radius: var(--me-r-sm);
   background: var(--me-charcoal);
   color: #fff;
   font-size: 13px;
@@ -285,7 +297,7 @@
 /* ---------- Fleet ---------- */
 .me-fleet {
   padding: 24px;
-  border-radius: 16px;
+  border-radius: var(--me-r-lg);
   background: var(--me-charcoal);
   color: #fff;
 }
@@ -326,7 +338,7 @@
   align-items: center;
   gap: 10px;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: var(--me-r-sm);
   background: rgba(20, 23, 29, 0.6);
   border: 1px solid rgba(51, 65, 85, 0.6);
   font-size: 13px;
@@ -358,7 +370,7 @@
   align-items: flex-start;
   gap: 20px;
   padding: 28px 24px;
-  border-radius: 16px;
+  border-radius: var(--me-r-lg);
   background: linear-gradient(135deg, var(--me-accent), var(--me-accent-dark));
   color: #fff;
   box-shadow: 0 16px 36px -10px rgba(255, 77, 6, 0.5);
@@ -396,7 +408,7 @@
   align-items: center;
   gap: 10px;
   padding: 12px 24px;
-  border-radius: 10px;
+  border-radius: var(--me-r-sm);
   background: var(--me-charcoal);
   color: #fff;
   font-size: 14px;
@@ -411,8 +423,13 @@
   transform: translateX(3px);
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Responsive (radius grows with screen size) ---------- */
 @media (min-width: 640px) {
+  .me-section {
+    --me-r-sm: 10px;
+    --me-r-lg: 18px;
+    --me-r-xl: 24px;
+  }
   .me-wrap { padding: 0 24px; }
   .me-hero { padding: 56px 0 64px; }
   .me-body { padding-top: 56px; padding-bottom: 72px; gap: 48px; }
@@ -422,6 +439,11 @@
 }
 
 @media (min-width: 900px) {
+  .me-section {
+    --me-r-sm: 12px;
+    --me-r-lg: 20px;
+    --me-r-xl: 32px;
+  }
   .me-stages {
     flex-direction: row;
     align-items: center;

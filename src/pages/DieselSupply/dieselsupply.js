@@ -10,6 +10,7 @@ import {
   bulk,
   cta,
 } from "./dieselsupplydata";
+import SEO from "../../components/SEO/SEO";
 
 // Shows an image if `img` is given, otherwise the Font Awesome icon.
 const Icon = ({ icon, img, alt = "" }) =>
@@ -21,6 +22,13 @@ const Icon = ({ icon, img, alt = "" }) =>
 
 const DieselSupply = () => {
   return (
+   <>
+    <SEO 
+      title= "Industrial Diesel & Fuel Supply Solutions | Samarveergroups"
+      description= "Supporting mining, transportation and industrial operations with fuel supply solutions aligned with operational demand and business requirements."
+      path="/mining-transportation/diesel-and-fuel-supply/"
+    />
+  
     <section className="ds-section" id="diesel-supply-fuel-station">
       {/* ===== Page header ===== */}
       <div className="ds-hero">
@@ -157,6 +165,7 @@ const DieselSupply = () => {
         </div>
       </div>
     </section>
+   </>
   );
 };
 

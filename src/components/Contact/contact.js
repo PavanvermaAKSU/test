@@ -14,11 +14,11 @@ const initialForm = {
 // ---- Head office map (edit here) ----
 const MAP = {
   label: "Head Office on Google Maps",
-  lat: 24.5541902,
-  lng: 80.8400797,
+  lat: 28.7394887,
+  lng: 77.1471396,
   zoom: 16,
   link:
-    "https://www.google.com/maps/place/Roshan+Jeep+%26+Tractor+Parts/@24.5541205,80.8377846,16.72z/data=!4m6!3m5!1s0x39847ff4715789b3:0x1a33c3d4c0e7e5e9!8m2!3d24.5541902!4d80.8400797!16s%2Fg%2F11lglk310t?hl=en-GB",
+    "https://maps.app.goo.gl/dW3jE67qqj97zLJa6",
 };
 const MAP_SRC = `https://maps.google.com/maps?q=${MAP.lat},${MAP.lng}&z=${MAP.zoom}&output=embed`;
 
@@ -102,6 +102,7 @@ function Contact() {
   };
 
   return (
+
     <section className="contact-section" id="contact">
       <div className="contact-container">
         <div className="contact-intro">

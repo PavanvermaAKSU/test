@@ -7,6 +7,7 @@
 }
 
 .site-header {
+  
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -23,6 +24,7 @@
 }
 
 .navbar-container {
+  border-radius: 5%;
   width: min(1240px, calc(100% - 48px));
   margin: 0 auto;
 }
@@ -58,12 +60,16 @@
 
 /* Main navigation */
 .navbar-main {
+  border-radius: 20%;
+
   position: relative;
   width: 100%;
   background: #ffffff;
 }
 
 .navbar-inner {
+  border-radius: 20%;
+
   min-height: 84px;
   display: flex;
   align-items: center;
@@ -151,6 +157,8 @@
    DROPDOWN MENU (level 1)
 ========================= */
 .navbar-dropdown {
+  border-radius: 10%;
+
   position: absolute;
   top: 100%;
   left: 0;
@@ -328,13 +336,13 @@
 
 /* Contact button */
 .navbar-cta {
+  border-radius: 5%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 12px 16px;
   border: 1px solid transparent;
-  border-radius: 3px;
   background: #f53030;
   color: #0b1424;
   font-size: 12px;

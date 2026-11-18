@@ -24,26 +24,26 @@ export const navbarData = [
     children: [
       {
         label: "Mining & Earthwork",
-        href: "/services/mining",
+        href: "/mining-transportation/overburden-removal",
       },
       {
         label: "Coal Supply and Transportation",
-        href: "/services/coal_supply_&_Trading",
+        href: "/mining-transportation/coal-supply-&-Trading",
       },
       {
         label: "Diesel Supply & Fuel Station",
-        href: "/services/diesel_and_fuel",
+        href: "/mining-transportation/diesel-and-fuel-supply",
       },
       {
         label: "Auto Parts & Lubricants",
-        href: "/services/autopart",
+        href: "/automotive/autoparts-&-lubricants",
       },
     ],
   },
 
   {
     label: "Products",
-    href: "/services/autopart"
+    href: "/automotive/autoparts-&-lubricants"
   },
   
   {

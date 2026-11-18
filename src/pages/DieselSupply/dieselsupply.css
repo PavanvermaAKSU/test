@@ -1,6 +1,10 @@
 /* dieselsupply.css
    Scoped with the "ds-" prefix. Change --ds-accent to restyle the section.
-   Mobile-first and responsive on all screen sizes. */
+   Mobile-first and responsive on all screen sizes.
+
+   Border radius is size-based: every element uses one of the --ds-r-* tokens
+   according to its size (small -> large). The tokens grow on bigger screens,
+   so change them once in .ds-section and everything stays consistent. */
 
 .ds-section {
   --ds-accent: #FF4D06;
@@ -11,6 +15,14 @@
   --ds-border: #E2E8F0;
   --ds-muted: #64748b;
 
+  /* Radius scale (mobile) */
+  --ds-r-sm: 8px;    /* small: icon boxes, buttons, chips */
+  --ds-r-md: 10px;   /* medium: strength cards */
+  --ds-r-lg: 14px;   /* large: service, modes, fleet, trusted, CTA */
+  --ds-r-xl: 16px;   /* extra large: whole section */
+  --ds-r-pill: 999px;
+
+  border-radius: var(--ds-r-xl);
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   color: #1f2937;
   background: var(--ds-slate);
@@ -73,7 +85,7 @@
 .ds-eyebrow {
   display: inline-block;
   padding: 5px 14px;
-  border-radius: 999px;
+  border-radius: var(--ds-r-pill);
   background: rgba(255, 77, 6, 0.15);
   color: var(--ds-accent);
   font-size: 11px;
@@ -122,6 +134,7 @@
 .ds-heading--dark { color: #475569; }
 .ds-heading--dark i { color: var(--ds-accent); }
 
+/* proportional: the radius scales with the icon's own size */
 .ds-icon-img {
   width: 3em;
   height: 3em;
@@ -141,7 +154,7 @@
   flex-direction: column;
   overflow: hidden;
   background: #fff;
-  border-radius: 18px;
+  border-radius: var(--ds-r-lg);
   border: 1px solid var(--ds-border);
   box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.08);
   transition: border-color 0.25s, box-shadow 0.25s;
@@ -180,7 +193,7 @@
   top: 14px;
   left: 14px;
   padding: 3px 10px;
-  border-radius: 6px;
+  border-radius: calc(var(--ds-r-sm) - 2px);
   background: var(--ds-accent);
   color: #fff;
   font-size: 12px;
@@ -234,7 +247,7 @@
   flex-direction: column;
   gap: 20px;
   padding: 24px;
-  border-radius: 16px;
+  border-radius: var(--ds-r-lg);
   background: #fff;
   border: 1px solid var(--ds-border);
   border-left: 5px solid var(--ds-accent);
@@ -265,7 +278,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  border-radius: 10px;
+  border-radius: var(--ds-r-sm);
   background: var(--ds-charcoal);
   color: #fff;
   font-size: 13px;
@@ -286,7 +299,7 @@
 
 .ds-strength {
   padding: 18px;
-  border-radius: 14px;
+  border-radius: var(--ds-r-md);
   background: #fff;
   border: 1px solid var(--ds-border);
   transition: border-color 0.25s, transform 0.25s;
@@ -304,7 +317,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: var(--ds-r-sm);
   background: var(--ds-charcoal);
   color: var(--ds-accent);
   font-size: 18px;
@@ -326,7 +339,7 @@
 /* ---------- Fleet ---------- */
 .ds-fleet {
   padding: 24px;
-  border-radius: 16px;
+  border-radius: var(--ds-r-lg);
   background: var(--ds-charcoal);
   color: #fff;
 }
@@ -365,7 +378,7 @@
   align-items: center;
   gap: 10px;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: var(--ds-r-sm);
   background: rgba(20, 23, 29, 0.6);
   border: 1px solid rgba(51, 65, 85, 0.6);
   font-size: 13px;
@@ -393,7 +406,7 @@
 /* ---------- Trusted by ---------- */
 .ds-trusted {
   padding: 22px;
-  border-radius: 16px;
+  border-radius: var(--ds-r-lg);
   background: #f8fafc;
   border: 1px solid var(--ds-border);
 }
@@ -409,7 +422,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 14px;
-  border-radius: 8px;
+  border-radius: calc(var(--ds-r-sm) - 2px);
   background: #fff;
   border: 1px solid var(--ds-border);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -430,7 +443,7 @@
   align-items: flex-start;
   gap: 20px;
   padding: 28px 24px;
-  border-radius: 16px;
+  border-radius: var(--ds-r-lg);
   background: linear-gradient(135deg, var(--ds-accent), var(--ds-accent-dark));
   color: #fff;
   box-shadow: 0 16px 36px -10px rgba(255, 77, 6, 0.5);
@@ -463,7 +476,7 @@
   align-items: center;
   gap: 10px;
   padding: 12px 24px;
-  border-radius: 10px;
+  border-radius: var(--ds-r-sm);
   background: var(--ds-charcoal);
   color: #fff;
   font-size: 14px;
@@ -475,8 +488,14 @@
 
 .ds-btn:hover { background: #000; transform: translateX(3px); }
 
-/* ---------- Responsive ---------- */
+/* ---------- Responsive (radius grows with screen size) ---------- */
 @media (min-width: 640px) {
+  .ds-section {
+    --ds-r-sm: 10px;
+    --ds-r-md: 12px;
+    --ds-r-lg: 18px;
+    --ds-r-xl: 24px;
+  }
   .ds-wrap { padding: 0 24px; }
   .ds-hero { padding: 56px 0 64px; }
   .ds-body { padding-top: 56px; padding-bottom: 72px; gap: 48px; }
@@ -486,6 +505,12 @@
 }
 
 @media (min-width: 900px) {
+  .ds-section {
+    --ds-r-sm: 12px;
+    --ds-r-md: 14px;
+    --ds-r-lg: 20px;
+    --ds-r-xl: 32px;
+  }
   .ds-service { flex-direction: row; }
   .ds-service.is-reverse { flex-direction: row-reverse; }
   .ds-visual { flex: 0 0 34%; min-height: 280px; font-size: 80px; }

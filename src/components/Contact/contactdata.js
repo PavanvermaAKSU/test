@@ -22,7 +22,7 @@ const contactData = {
     {
       id: "location",
       label: "Our Operations",
-      value: "Ward 45, Satna, Madhya Pradesh, India",
+      value: "Floor Ground, House no.527, BLOCK-BG, Near Karnal Bypass, Sanjay Gandhi Transport Nagar, New Delhi, North Delhi, Delhi 110042",
     },
   ],
 

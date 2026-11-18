@@ -1,6 +1,5 @@
 
 import { Routes, Route } from "react-router-dom";
-
 import HomeSEO from "./HomeSEO";
 import Navbar from "./components/Navbar/navbar";
 import Hero from "./components/Hero/hero";
@@ -22,14 +21,18 @@ import MiningEarthwork from "./pages/EarthworkMining/earthwork";
 import CoalSupply from "./pages/CoalSupply/coalsupply";
 import DieselSupply from "./pages/DieselSupply/dieselsupply";
 import AutoParts from "./pages/Autoparts/autoparts";
+import NotFound from "./pages/404/notfound";
+import Fleet from "./components/Fleets/fleets";
+
+
 
 function HomePage() {
   return (
     <>
       <main>
         <Hero />
-        <HomeSEO />
         <About />
+        <Fleet/>
         <Banner />
         <Vision />
         <Services />
@@ -49,15 +52,21 @@ function App() {
     <ScrollToTop/>
     <VisitorTracker/>
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={
+        <>
+          <HomeSEO/> 
+          <HomePage/> 
+        </>}
+      />
+      
       <Route path="/about" element={<CompanyOverview />} />
       <Route path= "/services" element={<Services/>}/>
       <Route path="/journey" element={<Journey/>}/>
-      <Route path="/services/mining" element={<MiningEarthwork/>} />
-      <Route path="/services/coal_supply_&_Trading" element={<CoalSupply/>} />
-      <Route path="/services/diesel_and_fuel" element={<DieselSupply/>} />
+      <Route path="/mining-transportation/overburden-removal" element={<MiningEarthwork/>} />
+      <Route path="/mining-transportation/coal-supply-&-Trading" element={<CoalSupply/>} />
+      <Route path="/mining-transportation/diesel-and-fuel-supply" element={<DieselSupply/>} />
       <Route path="/career" element={<Career/>}/>
-      <Route path="/services/autopart" element={<AutoParts/>}/>
+      <Route path="/automotive/autoparts-&-lubricants" element={<AutoParts/>}/>
       <Route path="/contact" element={<Contact/>}/>
 
       <Route path="/admin" element={<AdminLogin />} />
@@ -66,10 +75,11 @@ function App() {
         path="/admin/dashboard"
         element={<AdminDashboard />}
       />
+      <Route path="/location" element={<Serve/>}/>
 
       <Route
         path="*"
-        element={<h1>404 - Page Not Found</h1>}
+        element={<NotFound/>}
       />
     </Routes>
    </>

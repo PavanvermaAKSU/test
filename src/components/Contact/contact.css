@@ -1,4 +1,11 @@
+/* Border radius is size-based: the --ct-r-* tokens shrink on smaller screens.
+   xl = whole section, lg = map & form card, sm = inputs & button. */
 .contact-section {
+  --ct-r-sm: 8px;
+  --ct-r-lg: 16px;
+  --ct-r-xl: 32px;
+
+  border-radius: var(--ct-r-xl);
   padding: 100px 6%;
   background: #070b18;
   color: #ffffff;
@@ -68,7 +75,7 @@
   margin-top: 28px;
   overflow: hidden;
   border: 1px solid #283247;
-  border-radius: 16px;
+  border-radius: var(--ct-r-lg);
   background: #0f1627;
 }
 
@@ -111,7 +118,7 @@
   padding: 35px;
   background: #0f1627;
   border: 1px solid #283247;
-  border-radius: 16px;
+  border-radius: var(--ct-r-lg);
 }
 
 .contact-form-card h3 {
@@ -147,7 +154,7 @@
   color: #ffffff;
   background: #090f1d;
   border: 1px solid #303b50;
-  border-radius: 8px;
+  border-radius: var(--ct-r-sm);
   font: inherit;
   font-size: 0.92rem;
   outline: none;
@@ -183,7 +190,7 @@
   gap: 12px;
   padding: 16px 20px;
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--ct-r-sm);
   background: #c9a45c;
   color: #101522;
   font: inherit;
@@ -218,17 +225,26 @@
 }
 
 @media (max-width: 800px) {
+  .contact-section {
+    --ct-r-sm: 8px;
+    --ct-r-lg: 14px;
+    --ct-r-xl: 24px;
+    padding: 70px 5%;
+  }
+
   .contact-container {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-
-  .contact-section {
-    padding: 70px 5%;
-  }
 }
 
 @media (max-width: 520px) {
+  .contact-section {
+    --ct-r-sm: 6px;
+    --ct-r-lg: 12px;
+    --ct-r-xl: 16px;
+  }
+
   .contact-form-card {
     padding: 22px 18px;
   }
@@ -268,6 +284,7 @@
 
 .cp-modal {
   --cp-color: #c9a45c;
+  --cp-r: 20px; /* popup radius: shrinks on small screens */
   position: relative;
   width: 100%;
   max-width: 420px;
@@ -277,7 +294,7 @@
   background: linear-gradient(180deg, #131c33 0%, #0c1324 100%);
   border: 1px solid #2c374d;
   border-top: 3px solid var(--cp-color);
-  border-radius: 20px;
+  border-radius: var(--cp-r);
   box-shadow: 0 30px 80px -20px rgb(0 0 0 / 70%), 0 0 60px -20px var(--cp-color);
   animation: cp-pop 0.4s cubic-bezier(0.2, 1.2, 0.3, 1) both;
 }
@@ -390,6 +407,7 @@
 
 @media (max-width: 520px) {
   .cp-modal {
+    --cp-r: 16px;
     padding: 36px 22px 24px;
   }
 }

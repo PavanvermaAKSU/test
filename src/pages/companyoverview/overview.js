@@ -11,6 +11,7 @@ import {
   contact,
 } from "./overviewdata";
 import Clients from "../../components/Products/product";
+import SEO from "../../components/SEO/SEO";
 
 // Shows an image if `img` is given, otherwise the Font Awesome icon.
 const Icon = ({ icon, img, alt = "", className = "", style }) =>
@@ -22,6 +23,13 @@ const Icon = ({ icon, img, alt = "", className = "", style }) =>
 
 const CompanyOverview = () => {
   return (
+   <>
+    <SEO
+      title= "Know More about Samarveergroup | Best Autoparts and Lubricants, Mining and Transportation Business | Largest Company in india | Growing Company"
+      description= "We are Autoparts & lubes bulk and wholesaler distributer and also we are in the Mining and transportation field"
+      path="/about"
+    />
+
     <section className="co-section" id="company-overview">
       <div className="co-card">
         <div className="co-body">
@@ -168,6 +176,8 @@ const CompanyOverview = () => {
         </div>
       </div>
     </section>
+
+   </>
   );
 };
 

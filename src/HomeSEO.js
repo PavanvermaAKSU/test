@@ -1,20 +1,12 @@
-
-import { Helmet } from "react-helmet-async";
+import SEO from "./components/SEO/SEO";
 
 function HomeSEO() {
   return (
-    <Helmet>
-      <title>
-        Samarveer Auto & Lubes | Mining, Coal Supply & Auto Parts
-      </title>
-
-      <meta
-        name="description"
-        content="Explore Samarveer Auto & Lubes for mining and earthwork, coal supply and transportation, diesel supply, automotive spare parts and lubricants."
-      />
-
-      <meta name="robots" content="index, follow" />
-    </Helmet>
+    <SEO
+      title="Samarveer Auto & Lubes Pvt. Ltd. | Automotive, Mining & Transportation"
+      description="Discover Samarveer Auto & Lubes Pvt. Ltd. for automotive spare parts, lubricants, overburden removal, mining services, coal supply and transportation solutions."
+      path="/"
+    />
   );
 }
 

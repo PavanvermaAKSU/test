@@ -10,6 +10,7 @@ import {
   trusted,
   cta,
 } from "./coalsupplydata";
+import SEO from "../../components/SEO/SEO";
 
 // Shows an image if `img` is given, otherwise the Font Awesome icon.
 const Icon = ({ icon, img, alt = "" }) =>
@@ -21,6 +22,14 @@ const Icon = ({ icon, img, alt = "" }) =>
 
 const CoalSupply = () => {
   return (
+
+   <>
+    <SEO
+      title="Bulk Coal Supplier & Coal Trading | Samarveergroup"
+      description="Explore Samarveer Auto & Lubes for coal trading and bulk coal supply solutions. Contact our team for industrial coal procurement enquiries."
+      path="/mining-transportation/coal-supply-&-Trading"
+    />
+    
     <section className="cs-section" id="coal-supply-transportation">
       {/* ===== Page header ===== */}
       <div className="cs-hero">
@@ -160,6 +169,7 @@ const CoalSupply = () => {
         </div>
       </div>
     </section>
+   </>
   );
 };
 
