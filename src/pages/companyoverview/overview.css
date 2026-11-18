@@ -52,6 +52,13 @@
   gap: 32px;
 }
 
+.co-logo img{ 
+  display: block;
+  border-radius: 10%;
+  max-width: 80px;
+  max-height: 80px;
+}
+
 /* ---------- Header ---------- */
 .co-header {
   display: flex;
@@ -599,6 +606,12 @@
   .co-title { font-size: 22px; }
   .co-title span { font-size: 16px; }
   .co-logo { width: 64px; height: 64px; }
+  .co-logo img{ 
+    display: block;
+    width: 190px;
+    max-width: 100%;
+    max-height: 62px;
+  }
   .co-logo-gear { font-size: 28px; }
   .co-logo-truck { right: 9px; bottom: 9px; }
   .co-identity { align-items: flex-start; }
