@@ -24,12 +24,14 @@ import AutoParts from "./pages/Autoparts/autoparts";
 import NotFound from "./pages/404/notfound";
 import Fleet from "./components/Fleets/fleets";
 import MiningTransportation from "./pages/miningandtransportation/miningandtransportation";
-
+import { Analytics } from "@vercel/analytics/react"
 
 function HomePage() {
   return (
     <>
       <main>
+
+        <Analytics/>
         <Hero />
         <About />
         <Fleet/>
@@ -47,7 +49,9 @@ function HomePage() {
 function App() {
   return (
    <>
+    <Analytics/>
     <Navbar />
+    
 
     <ScrollToTop/>
     <VisitorTracker/>
