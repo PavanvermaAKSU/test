@@ -36,14 +36,14 @@ export const navbarData = [
       },
       {
         label: "Auto Parts & Lubricants",
-        href: "/automotive/autoparts-&-lubricants",
+        href: "/autoparts-&-lubricants",
       },
     ],
   },
 
   {
     label: "Products",
-    href: "/automotive/autoparts-&-lubricants"
+    href: "/autoparts-&-lubricants"
   },
   
   {

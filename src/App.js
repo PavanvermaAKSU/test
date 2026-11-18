@@ -23,7 +23,7 @@ import DieselSupply from "./pages/DieselSupply/dieselsupply";
 import AutoParts from "./pages/Autoparts/autoparts";
 import NotFound from "./pages/404/notfound";
 import Fleet from "./components/Fleets/fleets";
-
+import MiningTransportation from "./pages/miningandtransportation/miningandtransportation";
 
 
 function HomePage() {
@@ -66,9 +66,9 @@ function App() {
       <Route path="/mining-transportation/coal-supply-&-Trading" element={<CoalSupply/>} />
       <Route path="/mining-transportation/diesel-and-fuel-supply" element={<DieselSupply/>} />
       <Route path="/career" element={<Career/>}/>
-      <Route path="/automotive/autoparts-&-lubricants" element={<AutoParts/>}/>
+      <Route path="/autoparts-&-lubricants" element={<AutoParts/>}/>
       <Route path="/contact" element={<Contact/>}/>
-
+      <Route path="/mining-transportation" element={<MiningTransportation/>}/>
       <Route path="/admin" element={<AdminLogin />} />
 
       <Route
