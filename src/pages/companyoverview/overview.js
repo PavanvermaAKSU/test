@@ -25,8 +25,8 @@ const CompanyOverview = () => {
   return (
    <>
     <SEO
-      title= "Know More about Samarveergroup | Best Autoparts and Lubricants, Mining and Transportation Business | Largest Company in india | Growing Company"
-      description= "We are Autoparts & lubes bulk and wholesaler distributer and also we are in the Mining and transportation field"
+      title= "Know More | SamarveerGroup"
+      description= "We are Autoparts & lubes bulk and wholesaler distributer and also we are in the Mining and transportation field, our 28+ years legacy is continued."
       path="/about"
     />
 

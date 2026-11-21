@@ -7,6 +7,7 @@ import {
   growth,
   journeyHighlights,
 } from "./journeydata";
+import SEO from "../../components/SEO/SEO";
 
 // Shows an image if `img` is given, otherwise the Font Awesome icon.
 const Icon = ({ icon, img, alt = "" }) =>
@@ -46,6 +47,12 @@ const Journey = () => {
   }, []);
 
   return (
+   <>
+    <SEO
+      title= "Our Journey | SamarveerGroup"
+      description= "Our 28+ years of legacy is asking something like strong and bigger message to clients, our trust and growth is another level highest impact in across india."
+      path="/about"
+    />
     <section className="jr-section" id="company-journey" ref={rootRef}>
       <div className="jr-wrap">
         {/* ===== Header ===== */}
@@ -121,6 +128,7 @@ const Journey = () => {
         </div>
       </div>
     </section>
+   </>
   );
 };
 
